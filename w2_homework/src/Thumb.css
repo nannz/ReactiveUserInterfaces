@@ -1,0 +1,15 @@
+.Thumb img{
+    /*display: block;*/
+    border: none;
+    height: auto;
+    max-width: 100%;
+}
+
+.Thumb {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 180px;
+    height: 120px;
+}

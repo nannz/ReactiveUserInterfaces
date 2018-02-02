@@ -1,6 +1,5 @@
 .Content {
-    background-color: aquamarine;
-    margin: 10px;
+    /*background-color: aquamarine;*/
     display: flex;
     flex-direction:column;
     flex-basis: 63%;
@@ -16,12 +15,19 @@
     font-weight: 400;
     font-style: normal;
     font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+.title:hover{
+    text-decoration: underline;
+}
+.title:active {
+    text-decoration: underline;
 }
 
 .summary{
-    /*font-size: 14px;*/
     font-size: 0.875rem;
-    /*line-height: 20px;*/
     line-height: 1.25rem;
     font-weight: 400;
     font-style: normal;
@@ -29,6 +35,7 @@
     max-width: 540px;
     align-self: flex-start;
     margin-bottom: 0;
+    margin-top: 0px;
     color: #333;
 }
 
