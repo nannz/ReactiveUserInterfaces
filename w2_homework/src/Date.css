@@ -1,0 +1,20 @@
+.Date {
+    display: flex;
+    flex-direction: column;
+    width: 105px;
+    margin-top: 0px;
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.Date p{
+    /*font-size: 11px;*/
+    font-size: 0.6875rem;
+    /*line-height: 13px;*/
+    line-height: 0.8125rem;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "nyt-franklin",arial,helvetica,sans-serif;
+    display: block;
+    color: #999;
+}

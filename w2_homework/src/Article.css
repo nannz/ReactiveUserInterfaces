@@ -1,0 +1,7 @@
+.Article {
+    /*margin: 10px;*/
+    background-color: beige;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
