@@ -1,11 +1,8 @@
 /**
- * Created by zhaonan on 2018/1/31.
+ * Created by zhaonan on 2018/2/7.
  */
-
 import React, {Component} from 'react';
 import './Article.css';
-import Date from './Date';
-import Content from './Content'
 
 class Article extends Component {
     render() {
@@ -22,11 +19,9 @@ class Article extends Component {
                         <img src={this.props.imgSource}/>
                     </figure>
                 </a>
-                {/*{this.props.children}*/}
             </div>
         );
     }
 }
 
 export default Article;
-

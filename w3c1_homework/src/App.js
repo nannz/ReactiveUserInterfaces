@@ -30,7 +30,7 @@ class App extends Component {
                          imgSource = "https://static01.nyt.com/images/2018/01/31/us/politics/31dc-wagetheft/merlin_133114271_ec906296-f6b1-42bb-b5c9-c8a8a236aa28-mediumThreeByTwo210.jpg"
                          storyLink = "https://www.nytimes.com/2018/02/01/technology/amazon-apple-holiday-sales.html?rref=collection%2Fsectioncollection%2Fbusiness"
                 />
-{/*Below are the last week's original codes, which I may have too many components.*/}
+                {/*Below are the last week's original codes, which I may have too many components.*/}
                 {/*<Article articleId = "1">*/}
                 {/*<Date date="Jan. 31, 2018"/>*/}
                 {/*<a href = "https://www.nytimes.com/2018/02/01/technology/amazon-apple-holiday-sales.html?rref=collection%2Fsectioncollection%2Fbusiness" target="_blank">*/}
