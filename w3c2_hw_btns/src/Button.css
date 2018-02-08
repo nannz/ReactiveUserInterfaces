@@ -1,7 +1,19 @@
+button{
+    font-size: 18px;
+    padding:22px;
+    border: 1px solid #076D6D;
+    width: 200px;
+    height: 60px;
+    outline: 0px; /*I didn't make it as "none" for accessibility.*/
+}
 .selectedBtn {
-    font-size: large;
+    background-color: #00ADAD;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .unSelectedBtn {
-    font-size: small;
+    background-color: white;
+    color:#076D6D;
 }

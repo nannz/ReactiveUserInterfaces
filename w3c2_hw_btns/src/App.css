@@ -1,4 +1,19 @@
 .App {
-  text-align: center;
+    text-align: center;
+    margin:auto;
+    padding: 30px;
+    width: 637px;
+    height: 232px;
+    font-family: Helvetica,sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.App .BtnGroup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 

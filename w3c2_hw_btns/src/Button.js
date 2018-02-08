@@ -20,11 +20,11 @@ class Button extends Component {
 
         if (isSelected) {
             return (
-                <button type="button" onClick={this.buttonClicked} className = "selectedBtn">The {this.props.label} Button</button>
+                <button type="button" onClick={this.buttonClicked} className = "selectedBtn">{this.props.label} Button</button>
             );
         } else {
             return (
-                <button type="button" onClick={this.buttonClicked} className = "unSelectedBtn">The {this.props.label} Button</button>
+                <button type="button" onClick={this.buttonClicked} className = "unSelectedBtn">{this.props.label} Button</button>
             );
         }
 
