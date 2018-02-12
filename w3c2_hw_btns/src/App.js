@@ -8,7 +8,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {selectedLabel: "First", count: 1};
-
         this.buttonHasClicked = this.buttonHasClicked.bind(this); //I cannot do this.buttonHasClicked() in both places, it will call the function
     }
 
@@ -20,40 +19,36 @@ class App extends Component {
     }
 
     render() {
-        if (this.state.selectedLabel === "First") {
+        const buttons = [
+            {label: "First", onClick: this.buttonHasClicked, isSelected: this.state.selectedLabel === "First"},
+            {label: "Second", onClick: this.buttonHasClicked, isSelected: this.state.selectedLabel === "Second"},
+            {label: "Third", onClick: this.buttonHasClicked, isSelected: this.state.selectedLabel === "Third"}
+        ];
+
+        const buttonComponents = buttons.map((button, id) => {
             return (
-                <div className="App">
-                    <div className="BtnGroup">
-                        <Button label="First" onClick={this.buttonHasClicked} isSelected={true}/>
-                        <Button label="Second" onClick={this.buttonHasClicked} isSelected={false}/>
-                        <Button label="Third" onClick={this.buttonHasClicked} isSelected={false}/>
-                    </div>
-                    <DisplayBox currentBtn={this.state.selectedLabel}/>
-                </div>
+                <Button label={button.label} onClick={button.onClick}
+                        isSelected={button.isSelected}/>
             );
-        } else if (this.state.selectedLabel === "Second") {
-            return (
-                <div className="App">
-                    <div className="BtnGroup">
-                        <Button label="First" onClick={this.buttonHasClicked} isSelected={false}/>
-                        <Button label="Second" onClick={this.buttonHasClicked} isSelected={true}/>
-                        <Button label="Third" onClick={this.buttonHasClicked} isSelected={false}/>
-                    </div>
-                    <DisplayBox currentBtn={this.state.selectedLabel}/>
+        });
+        return (
+            <div className="App">
+
+
+                <div className="BtnGroup">
+                    {buttonComponents}
+                    {/*<Button label="First" onClick={this.buttonHasClicked}*/}
+                            {/*isSelected={this.state.selectedLabel === "First"}/>*/}
+                    {/*<Button label="Second" onClick={this.buttonHasClicked}*/}
+                            {/*isSelected={this.state.selectedLabel === "Second"}/>*/}
+                    {/*<Button label="Third" onClick={this.buttonHasClicked}*/}
+                            {/*isSelected={this.state.selectedLabel === "Third"}/>*/}
                 </div>
-            );
-        } else if (this.state.selectedLabel === "Third") {
-            return (
-                <div className="App">
-                    <div className="BtnGroup">
-                        <Button label="First" onClick={this.buttonHasClicked} isSelected={false}/>
-                        <Button label="Second" onClick={this.buttonHasClicked} isSelected={false}/>
-                        <Button label="Third" onClick={this.buttonHasClicked} isSelected={true}/>
-                    </div>
-                    <DisplayBox currentBtn={this.state.selectedLabel}/>
-                </div>
-            );
-        }
+
+                <DisplayBox currentBtn={this.state.selectedLabel}/>
+            </div>
+        );
+
 
     }
 }
