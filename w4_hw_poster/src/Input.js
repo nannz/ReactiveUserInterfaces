@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import './Input.css';
 class Input extends Component {
     constructor(props){
-         super(props);
+        super(props);
         this.onChange = this.onChange.bind(this);
     }
     onChange(e){
@@ -14,8 +14,8 @@ class Input extends Component {
     render() {
         return (
             <div className="Input">
-                <h2>{this.props.label}</h2>
-                <input type = "text" onChange = {this.onChange} />
+                <label>{this.props.label}</label>
+                <input type = "text" onChange = {this.onChange} placeholder={this.props.placeholder}/>
             </div>
         );
     }
