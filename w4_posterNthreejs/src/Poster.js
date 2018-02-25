@@ -9,8 +9,6 @@ import * as THREE from 'three';
 class Poster extends Component {
 
     render() {
-
-
         return (
             <div className="Poster">
                 <h1>{this.props.eventName}</h1>
@@ -19,12 +17,8 @@ class Poster extends Component {
                     <p id="time">{this.props.time}</p>
                 </div>
                 <div id="shape">
-
                     <Shape shapeGeo = {this.props.shapeGeo} shapeText = {this.props.shape}/>
-
-                    <p>{this.props.shape}</p>
-
-
+                    {/*<p>{this.props.shape}</p>*/}
                 </div>
 
             </div>

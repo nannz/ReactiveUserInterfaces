@@ -11,20 +11,24 @@ class Selector extends Component {
         this.onChange = this.onChange.bind(this);
         this.state = {
             value : "none"
+            // shapeGeo: new THREE.BoxGeometry(1, 1, 1)
         }
     }
     onChange(e){
         this.setState({
             value: e.target.value
         });
-        if(this.state.value === "box"){
+        if(e.target.value === "box"){
+            //this.setState({shapeGeo:new THREE.BoxGeometry(20, 20, 20) });
             return this.props.onChange( e.target.value,new THREE.BoxGeometry(20, 20, 20));
-        }else if (this.state.value === "sphere"){
+        }else if (e.target.value === "sphere"){
+            //this.setState({shapeGeo:new THREE.SphereGeometry(15, 20, 20)});
             return this.props.onChange( e.target.value,new THREE.SphereGeometry(15, 20, 20));
         }else{
-            return this.props.onChange( e.target.value,new THREE.BoxGeometry(1, 1, 1));
+            //this.setState({shapeGeo:new THREE.BoxGeometry(1, 1, 1) });
+            return this.props.onChange( e.target.value,new THREE.BoxGeometry(0, 0, 0));
         }
-
+        //return this.props.onChange( e.target.value,this.state.shapeGeo);
     }
 
     render() {

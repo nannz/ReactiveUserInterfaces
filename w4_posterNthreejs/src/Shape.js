@@ -9,7 +9,7 @@ class Shape extends Component {
 
     constructor(props) {
         super(props);
-
+        this.lastShapeText = "none";
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
         this.animate = this.animate.bind(this);
@@ -60,7 +60,7 @@ class Shape extends Component {
         this.renderer = renderer;
         this.material =  shapeMaterial;
         this.shapeMesh = shapeMesh;
-        this.lastShape = this.props.shapeText;
+       // this.lastShapeText = "none";//this.props.shapeText;
 
         this.mount.appendChild(this.renderer.domElement);
         this.start();
@@ -84,16 +84,25 @@ class Shape extends Component {
 
     checkChangeShape(){
 
-        if(this.props.shape != this.lastShape){
+        if(this.props.shapeText != this.lastShapeText){
+            console.log("change shape!");
+            console.log("this.lastShapeText is " + this.lastShapeText );
+            this.lastShapeText = this.props.shapeText;
 
+            this.scene.remove(this.shapeMesh);
+            const geoTemp = this.props.shapeGeo;
+            this.shapeMesh = new THREE.Mesh(geoTemp, this.material);
+            this.scene.add(this.shapeMesh);
         }
     }
 
     animate() {
+
+
         this.shapeMesh.rotation.x += 0.01;
         this.shapeMesh.rotation.y += 0.01;
 
-        //if this.shape changes, rerender the shape?
+
 
         this.renderScene();
         this.frameId = window.requestAnimationFrame(this.animate);
@@ -102,10 +111,12 @@ class Shape extends Component {
 
 
     renderScene() {
+        this.checkChangeShape();
         this.renderer.render(this.scene, this.camera)
     }
 
     render() {
+        console.log(this.lastShapeText + " " + this.props.shapeText);
         return (
             <div className="Shape"
                  style={{ width: '500px', height: '700px' }}

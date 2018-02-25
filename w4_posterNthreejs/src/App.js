@@ -21,8 +21,8 @@ class App extends Component {
             eventName: "Give me the event name",
             eventLocation: "Where is it?",
             eventTime:"Wheeeeen?",
-            shape:"",
-            shapeGeo: new THREE.BoxGeometry(1, 1, 1)
+            shape:"none",
+            shapeGeo: new THREE.BoxGeometry(0, 0, 0)
         }
     }
 
@@ -46,7 +46,7 @@ class App extends Component {
             shape: shape,
             shapeGeo: shapeGeo
         });
-        console.log(shapeGeo);
+        // console.log(shapeGeo);
     }
 
     render() {
@@ -60,7 +60,6 @@ class App extends Component {
                     <Selector label = "Shape" onChange = {this.changeShape}/>
                 </div>
                 <Poster eventName={this.state.eventName} location = {this.state.eventLocation} time = {this.state.eventTime} shape = {this.state.shape} shapeGeo = {this.state.shapeGeo}/>
-                {/*<Poster eventName={this.state.eventName} location = {this.state.eventLocation} time = {this.state.eventTime}  shapeGeo = {this.state.shapeGeo}/>*/}
             </div>
         );
     }
