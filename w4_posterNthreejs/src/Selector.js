@@ -3,19 +3,28 @@
  */
 import React, {Component} from 'react';
 import './Selector.css';
+import * as THREE from 'three';
+
 class Selector extends Component {
     constructor(props){
         super(props);
         this.onChange = this.onChange.bind(this);
         this.state = {
-            value : "None"
+            value : "none"
         }
     }
     onChange(e){
         this.setState({
             value: e.target.value
         });
-        return this.props.onChange(e.target.value);
+        if(this.state.value === "box"){
+            return this.props.onChange( e.target.value,new THREE.BoxGeometry(20, 20, 20));
+        }else if (this.state.value === "sphere"){
+            return this.props.onChange( e.target.value,new THREE.SphereGeometry(15, 20, 20));
+        }else{
+            return this.props.onChange( e.target.value,new THREE.BoxGeometry(1, 1, 1));
+        }
+
     }
 
     render() {

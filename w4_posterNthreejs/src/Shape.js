@@ -6,6 +6,7 @@ import * as THREE from 'three';
 // import * as ReactTHREE from 'react-three';
 
 class Shape extends Component {
+
     constructor(props) {
         super(props);
 
@@ -28,20 +29,26 @@ class Shape extends Component {
         //render
         const renderer = new THREE.WebGLRenderer();
 
-        renderer.setClearColor(new THREE.Color(0xff0000), 1.0);
+        renderer.setClearColor(new THREE.Color(0x000000), 1.0);
         renderer.setSize(width, height);
         renderer.shadowMapEnabled = true;
         //geometry
-        const cubeGeometry = new THREE.BoxGeometry(14, 14, 14);
+        const geoTemp = this.props.shapeGeo;
+        //const cubeGeometry = new THREE.BoxGeometry(20, 20, 20);
         //material
-        const cubeMaterial = new THREE.MeshLambertMaterial({color: 0xEEEEEE});
+        const shapeMaterial = new THREE.MeshLambertMaterial({color: 0xEEEEEE});
         //actual object
-        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        const shapeMesh = new THREE.Mesh(geoTemp, shapeMaterial);
         //add
-        cube.position.x = -5;
-        cube.position.y = 3;
-        cube.position.z = 0;
-        scene.add(cube);
+        scene.add(shapeMesh);
+        //lightening
+        const ambientLight = new THREE.AmbientLight(0x0c0c0c);
+        scene.add(ambientLight);
+        const spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(-40, 60, -10);
+        spotLight.castShadow = true;
+        scene.add(spotLight);
+
 
         camera.position.x = -30;
         camera.position.y = 40;
@@ -51,8 +58,9 @@ class Shape extends Component {
         this.scene = scene;
         this.camera = camera;
         this.renderer = renderer;
-        this.material =  cubeMaterial;
-        this.cube = cube;
+        this.material =  shapeMaterial;
+        this.shapeMesh = shapeMesh;
+        this.lastShape = this.props.shapeText;
 
         this.mount.appendChild(this.renderer.domElement);
         this.start();
@@ -74,13 +82,23 @@ class Shape extends Component {
         cancelAnimationFrame(this.frameId);
     }
 
+    checkChangeShape(){
+
+        if(this.props.shape != this.lastShape){
+
+        }
+    }
+
     animate() {
-        this.cube.rotation.x += 0.01;
-        this.cube.rotation.y += 0.01;
+        this.shapeMesh.rotation.x += 0.01;
+        this.shapeMesh.rotation.y += 0.01;
+
+        //if this.shape changes, rerender the shape?
 
         this.renderScene();
         this.frameId = window.requestAnimationFrame(this.animate);
     }
+
 
 
     renderScene() {
@@ -89,12 +107,10 @@ class Shape extends Component {
 
     render() {
         return (
-
             <div className="Shape"
-                 style={{ width: '400px', height: '400px' }}
+                 style={{ width: '500px', height: '700px' }}
                  ref={(mount) => { this.mount = mount }}
             >
-
             </div>
         );
     }

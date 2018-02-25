@@ -7,6 +7,7 @@ import './App.css';
 import Input from './Input'
 import Poster from './Poster'
 import Selector from './Selector'
+import * as THREE from 'three';
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ class App extends Component {
             eventName: "Give me the event name",
             eventLocation: "Where is it?",
             eventTime:"Wheeeeen?",
-            shape:""
+            shape:"",
+            shapeGeo: new THREE.BoxGeometry(1, 1, 1)
         }
     }
 
@@ -39,10 +41,12 @@ class App extends Component {
             eventTime: time
         })
     }
-    changeShape(shape){
+    changeShape(shape, shapeGeo){
         this.setState({
-            shape: shape
-        })
+            shape: shape,
+            shapeGeo: shapeGeo
+        });
+        console.log(shapeGeo);
     }
 
     render() {
@@ -55,7 +59,8 @@ class App extends Component {
                     <Input label="Time" onChange={this.changeTime} placeholder={this.state.eventTime}/>
                     <Selector label = "Shape" onChange = {this.changeShape}/>
                 </div>
-                <Poster eventName={this.state.eventName} location = {this.state.eventLocation} time = {this.state.eventTime} shape = {this.state.shape}/>
+                <Poster eventName={this.state.eventName} location = {this.state.eventLocation} time = {this.state.eventTime} shape = {this.state.shape} shapeGeo = {this.state.shapeGeo}/>
+                {/*<Poster eventName={this.state.eventName} location = {this.state.eventLocation} time = {this.state.eventTime}  shapeGeo = {this.state.shapeGeo}/>*/}
             </div>
         );
     }

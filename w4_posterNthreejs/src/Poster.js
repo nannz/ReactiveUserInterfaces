@@ -4,10 +4,12 @@
 import React, {Component} from 'react';
 import Shape from './Shape'
 import './Poster.css';
+import * as THREE from 'three';
 
 class Poster extends Component {
 
     render() {
+
 
         return (
             <div className="Poster">
@@ -16,7 +18,14 @@ class Poster extends Component {
                     <p id="location">{this.props.location}</p>
                     <p id="time">{this.props.time}</p>
                 </div>
-                <div id="shape"><p>{this.props.shape}</p><Shape /></div>
+                <div id="shape">
+
+                    <Shape shapeGeo = {this.props.shapeGeo} shapeText = {this.props.shape}/>
+
+                    <p>{this.props.shape}</p>
+
+
+                </div>
 
             </div>
         );
