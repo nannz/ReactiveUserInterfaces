@@ -9,7 +9,7 @@ class Input extends Component {
         this.onChange = this.onChange.bind(this);
     }
     onChange(e){
-        return this.props.onChange(e.target.value);
+        return this.props.onChange(this.props.name, e.target.value);
     }
     render() {
         return (
