@@ -1,0 +1,40 @@
+.Person{
+
+}
+.name-bar{
+    background: white;
+    padding: 8px 18px 8px 18px;
+    display: flex;
+    align-items:center;
+}
+.avatar{
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 20px;
+    margin-right:16px;
+}
+
+h2{
+    margin:0;
+    font-size: 14pt;
+    font-weight:500;
+}
+
+.action{
+    display:flex;
+    justify-content:space-evenly;
+}
+button{
+    outline:0px;
+}
+button:active {
+    background:rgba(0, 0, 0, 0.38);
+    color:white;
+}
+.info{
+    padding: 8px 18px 8px 18px;
+}
+p{
+    margin:0;
+}

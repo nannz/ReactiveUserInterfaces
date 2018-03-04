@@ -1,0 +1,39 @@
+.PersonHiddenBar{
+    padding:8px;
+    padding-bottom: 0;
+    background-color: #FAFAFA;
+}
+.material-icons.md-18 {
+    font-size: 18px;
+    padding-right: 10px; }
+p{
+    font-size: 12pt;
+}
+.action{
+    margin-bottom:8px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding-left:10px;
+    padding-right:10px;
+    border-top:1px solid #E0E0E0
+}
+
+.number-line{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+.email-line{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+.address-line{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
