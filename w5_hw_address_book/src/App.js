@@ -119,6 +119,7 @@ class App extends Component {
             )
         });
 
+
         return (
             <div className="App">
 
@@ -127,15 +128,9 @@ class App extends Component {
                     <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
                         <i className="material-icons">filter_list</i>
                     </button>
-                    <ReactModal
-                        isOpen={this.state.showFilter}
-                        contentLabel="Filter"
-                        shouldCloseOnOverlayClick={true}
-                        overlayClassName="Overlay"
-                    >
-                        <Filter/>
-                        <button onClick={this.handleCloseModal}>Close</button>
-                    </ReactModal>
+                        <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}/>
+
+
 
 
                     <Search onChange={this.onSearchChange}/>

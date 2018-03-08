@@ -1,0 +1,96 @@
+.Person {
+
+}
+
+.name-bar {
+    background: white;
+    padding: 8px 18px 8px 18px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 20px;
+    margin-right: 16px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 14pt;
+    font-weight: 500;
+}
+
+.action {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+button {
+    outline: 0px;
+}
+
+button:active {
+    background: rgba(0, 0, 0, 0.38);
+    color: white;
+}
+
+.info {
+    padding: 8px 18px 8px 18px;
+}
+
+p {
+    margin: 0;
+}
+
+.PersonHiddenBar {
+    padding: 8px;
+    padding-bottom: 0;
+    background-color: #FAFAFA;
+}
+
+.PersonHiddenBar .material-icons.md-18 {
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.PersonHiddenBar .p {
+    font-size: 12pt;
+}
+
+.PersonHiddenBar .action {
+    margin-bottom: 8px;
+}
+.PersonHiddenBar .action button{
+    flex-direction: column;
+}
+
+.PersonHiddenBar .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 1px solid #E0E0E0
+}
+
+.PersonHiddenBar .number-line {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+.PersonHiddenBar .email-line {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+.PersonHiddenBar .address-line {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
