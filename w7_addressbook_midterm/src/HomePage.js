@@ -8,13 +8,15 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.uniqueCountryList = this.props.people.map((person) => person.country).filter((value, index, self) => self.indexOf(value) === index).sort();
+        //set way to have unique Country
+        //this.uniqueCountryList = new Set(this.props.people.map((person) => person.country).sort());
         this.state = {
             searchValue: "",
             showFilter: false,
             sortType: "firstName",
             onClickPersonID: 0,
 
-            filterCountry: new Array() //an array of the countries that filtered
+            filterCountries: new Set() //a set of the countries that filtered
         };
         this.onSearchChange = this.onSearchChange.bind(this);
         this.onNameClick = this.onNameClick.bind(this);
@@ -22,6 +24,7 @@ class HomePage extends Component {
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleSortTypeChange = this.handleSortTypeChange.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+        this.handleResetFilter = this.handleResetFilter.bind(this);
 
     }
 
@@ -34,39 +37,26 @@ class HomePage extends Component {
         this.setState({showFilter: false});
     }
 
+    handleResetFilter(){
+        console.log("reset!");
+        this.setState({
+            sortType: "firstName",
+            filterCountries: new Set()
+        })
+    }
+
     handleSortTypeChange(sortType) {
         this.setState({
             sortType: sortType
         });
     }
-    handleCheckboxChange(country){ //a string
-        console.log("handleCheckboxChange triggerred in HomePage!");
-        // console.log(country);
-        // console.log(this.state.filterCountry);
-        if(this.state.filterCountry.length === 0){
-            console.log("add the country!")
-            this.setState({
-                filterCountry : [country]
-            });
-        }else{
-            if(this.state.filterCountry.includes(country)){
-                //remove
-                console.log(this.state.filterCountry.indexOf(country));
-                let newFilterCountry = this.state.filterCountry.slice().splice(this.state.filterCountry.indexOf(country),1);
-                this.setState({
-                    filterCountry:newFilterCountry
-                });
-                console.log("remove the country!");
-            }else{
-                let newFilterCountry = this.state.filterCountry.concat(country);
-                this.setState({
-                    filterCountry:newFilterCountry
-                });
-                console.log("add the country!");
-            }
-        }
 
+    handleCheckboxChange(selesctedCountries) { //a set
+        this.setState({
+            filterCountries: selesctedCountries
+        });
     }
+
     onSearchChange(value) {
         this.setState({
             searchValue: value
@@ -80,13 +70,33 @@ class HomePage extends Component {
     }
 
     render() {
-        //map function
         let peopleCopy = this.props.people.slice();
 
-        //get the countryList for the filter
-        // const countryList = peopleCopy.map((person) => person.country);
-        // let uniqueCountrylist = countryList.filter((value, index, self)=> self.indexOf(value)===index );
-        //console.log(this.uniqueCountryList);
+        //filter tab results
+        let filterCountries = Array.from(this.state.filterCountries);
+        if (filterCountries.length !== this.uniqueCountryList.length && filterCountries.length !== 0) {
+            let peopleFilterTotal = [];
+            let filterCountryPeople = filterCountries.map((filterCountry, key) => {
+                let peopleFilterTemp = peopleCopy.filter(people => {
+                    if (people.country.match(filterCountry)) {
+                        return people.country.match(filterCountry)
+                    }
+                });
+                if (peopleFilterTotal.length !== 0) {
+                    //join peopleFilterTemp
+                    peopleFilterTotal = peopleFilterTotal.concat(peopleFilterTemp);
+                } else {
+                    peopleFilterTotal = peopleFilterTemp;
+                }
+            });
+            //console.log(peopleFilterTotal);
+            peopleCopy = peopleFilterTotal;
+        } else if(filterCountries.length === this.uniqueCountryList.length){
+            console.log("all countries are checked");
+        }else if(filterCountries.length === 0){
+            console.log("no country is checked!");
+            //peopleCopy = this.props.people.slice();
+        }
 
         //search bar function
         if (this.state.searchValue !== '') {
@@ -152,9 +162,9 @@ class HomePage extends Component {
                         onClickPersonID={this.state.onClickPersonID} sortType={this.state.sortType}/>
             )
         });
-
+        console.log("");
         console.log("filteredCountries:");
-        console.log(this.state.filterCountry);
+        console.log(this.state.filterCountries);
         console.log("");
 
         return (
@@ -167,7 +177,8 @@ class HomePage extends Component {
                     <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
                             onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
                             onChangeCheckbox={this.handleCheckboxChange}
-                            uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountry}
+                            uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}
+                            handleReset = {this.handleResetFilter}
                     />
                     <Search onChange={this.onSearchChange}/>
                 </div>

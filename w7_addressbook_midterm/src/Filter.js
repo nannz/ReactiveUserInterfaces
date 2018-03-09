@@ -8,28 +8,69 @@ class Filter extends Component {
         this.handleSortChange = this.handleSortChange.bind(this);
         this.handleBackBtn = this.handleBackBtn.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-//this.props.filterCountries
+        this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+        //this.props.filterCountries
         //this.props.uniqueCountries
+        // this.state={
+        //     selectedCountryCheckboxes : this.props.filterCountries, //a set
+        //     selectedSortType: this.props.currentSortType
+        // }
     }
 
+    handleReset(){
+        // let emptyCountryCheckboxes = new Set(this.state.selectedCountryCheckboxes);
+        // emptyCountryCheckboxes = emptyCountryCheckboxes.clear();
+        // this.setState({
+        //     selectedSortType: this.props.currentSortType,
+        //     // selectedCountryCheckboxes:emptyCountryCheckboxes.clear()
+        //     selectedCountryCheckboxes:emptyCountryCheckboxes
+        // })
+        console.log("clear btn in filter clicked");
+        this.props.handleReset();
+    }
+    handleSubmitBtn(e){
+        e.preventDefault();
+        //pass the new sort type + selected Country to homePage.js + close the modal
+        //this.props.onChangeSortType(this.props.currentSortType);//this.state.selectedSortType);
+        //console.log(this.state.selectedCountryCheckboxes);
+        //this.props.onChangeCheckbox(this.state.selectedCountryCheckboxes);
+
+        this.props.onCloseModal();
+    }
     handleBackBtn(){
         //first clear
         //close the modal
         this.handleCloseBtnModal();
     }
+
     handleCloseBtnModal() {
         this.props.onCloseModal();
     }
 
     handleSortChange(e) {
+        // this.setState = {
+        //     selectedSortType: e.target.value
+        // }
         this.props.onChangeSortType(e.target.value); //firstName/lastName/recent
     }
+
     handleCheckboxChange(e){
-        console.log("handleCheckboxChange triggered");
-        console.log(e.target.value);
-        // console.log(typeof e.target.value)
-        this.props.onChangeCheckbox(e.target.value);
+        // let updatedCountryCheckboxes = new Set(this.state.selectedCountryCheckboxes);
+        let updatedCountryCheckboxes = new Set(this.props.filterCountries);
+        // if (this.state.selectedCountryCheckboxes.has(e.target.value)) {
+
+        if (this.props.filterCountries.has(e.target.value)) {
+            updatedCountryCheckboxes.delete(e.target.value);
+        } else {
+           updatedCountryCheckboxes.add(e.target.value);
+        }
+        // this.setState({
+        //     selectedCountryCheckboxes: updatedCountryCheckboxes
+        // });
+        this.props.onChangeCheckbox(updatedCountryCheckboxes);
     }
+
     render() {
         const checkboxCountries = this.props.uniqueCountries.map((c, i) => {
             //console.log("this c"+ c);
@@ -39,7 +80,7 @@ class Filter extends Component {
                         <input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
                                type="checkbox"
                                value={c}
-                               // checked = {this.props.filterCountries.includes(c)}
+                               checked = {this.props.filterCountries.has(c)}
                                onChange = {this.handleCheckboxChange}
                         />
                         {c}
@@ -53,7 +94,6 @@ class Filter extends Component {
         return (
             <div className="Filter" style={{display: this.props.showFilter ? 'block' : 'none'}}>
 
-
                 <div className="topBar">
                     <button className="backBtn" type="button" name="ic-back" onClick={this.handleBackBtn}>
                         <i className="material-icons">keyboard_arrow_left</i>
@@ -62,7 +102,7 @@ class Filter extends Component {
 
                 </div>
 
-                <form>
+                <form onReset = {this.handleReset}>
                     <div className="sortBy">
                         <p>Sort By :</p>
                         <div>
@@ -97,13 +137,11 @@ class Filter extends Component {
                         <p>Filter By :</p>
                         <p>Country</p>
                         {checkboxCountries}
-
-
                     </div>
                     <div>
-                        <label><input className="clearBtn" type="reset" name="ic-back" value="Clear"/>
+                        <label><input className="clearBtn" type="reset" name="ic-back" value="Clear" />
                         </label>
-                        <button type="button" onClick={this.handleCloseBtnModal} className="sortBtn">Save the filter
+                        <button type="submit" onClick={this.handleSubmitBtn} className="sortBtn">Save the filter
                         </button>
                     </div>
                 </form>

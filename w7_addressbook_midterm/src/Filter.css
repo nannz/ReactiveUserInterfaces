@@ -1,0 +1,58 @@
+.Filter {
+
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: inherit;
+
+    background-color:  #fefefe;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    animation-name: animateAppear;
+    animation-duration: 0.5s
+}
+.topBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #F5F5F5;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+    padding-top: 14px;
+}
+.backBtn{
+    padding: 0;
+    border:0;
+    height: 24px;
+    background-color:transparent;
+}
+input{
+   width: auto;
+    height: auto;
+}
+
+
+.sortBtn {
+    position: absolute;
+            /*fixed;*/
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: deepskyblue;
+    float: none;
+    font-size: 14pt;
+}
+.sortBtn:hover,
+.sortBtn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+@keyframes animateAppear {
+    from {left: 100%; top: 0; opacity: 1}
+    to {left:0; top: 0; opacity: 1}
+}
