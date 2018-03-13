@@ -13,7 +13,7 @@ class HomePage extends Component {
         this.state = {
             searchValue: "",
             showFilter: false,
-            sortType: "firstName",
+            sortType: "First Name",
             onClickPersonID: 0,
 
             filterCountries: new Set(), //a set of the countries that filtered
@@ -48,7 +48,7 @@ class HomePage extends Component {
     handleResetFilter() {
         console.log("reset!");
         this.setState({
-            sortType: "firstName",
+            sortType: "First Name",
             filterCountries: new Set()
         })
     }
@@ -108,7 +108,7 @@ class HomePage extends Component {
     handleFilterEchoSortBtn(e) {
         e.preventDefault();
         this.setState({
-            sortType: "firstName"
+            sortType: "First Name"
         })
     }
 
@@ -199,7 +199,7 @@ class HomePage extends Component {
         }
 
         //sort by name by default
-        if (this.state.sortType === 'firstName') {
+        if (this.state.sortType === 'First Name') {
             peopleCopy.sort(function compareName(a, b) {
                 if (a.firstName < b.firstName) {
                     return -1;
@@ -210,7 +210,7 @@ class HomePage extends Component {
                 }
             })
         }
-        if (this.state.sortType === 'lastName') {
+        if (this.state.sortType === 'Last Name') {
             peopleCopy.sort(function compareName(a, b) {
                 if (a.lastName < b.lastName) {
                     return -1;
@@ -221,7 +221,7 @@ class HomePage extends Component {
                 }
             })
         }
-        if (this.state.sortType === 'recent') {
+        if (this.state.sortType === 'Recently Contacted') {
             peopleCopy.sort(function compareName(a, b) {
                 //compare year
                 if (a.lastContactTime.getTime() < b.lastContactTime.getTime()) {
@@ -309,7 +309,7 @@ class HomePage extends Component {
                     <Search onChange={this.onSearchChange} placeholderValue={this.state.searchValue}/>
                 </div>
                 <div className="filter-echo">
-                    {this.state.sortType !== "firstName" &&
+                    {this.state.sortType !== "First Name" &&
                     <button type="button" className="filter-echo-sortType" value={this.state.sortType}
                             onClick={this.handleFilterEchoSortBtn}>sort by {this.state.sortType}</button>}
                     {/*<button type="button" className="filter-echo-sortType" disabled>sort by {this.state.sortType}</button>*/}

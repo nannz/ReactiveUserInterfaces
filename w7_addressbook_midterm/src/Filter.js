@@ -12,15 +12,17 @@ class Filter extends Component {
         this.handleReset = this.handleReset.bind(this);
     }
 
-    handleReset(){
+    handleReset() {
         console.log("clear btn in filter clicked");
         this.props.handleReset();
     }
-    handleSubmitBtn(e){
+
+    handleSubmitBtn(e) {
         e.preventDefault();
         this.props.onCloseModal();
     }
-    handleBackBtn(){
+
+    handleBackBtn() {
         //first clear
         //close the modal
         this.handleCloseBtnModal();
@@ -34,14 +36,14 @@ class Filter extends Component {
         this.props.onChangeSortType(e.target.value); //firstName/lastName/recent
     }
 
-    handleCheckboxChange(e){
+    handleCheckboxChange(e) {
         //e.preventDefault();
         let updatedCountryCheckboxes = new Set(this.props.filterCountries);
 
         if (this.props.filterCountries.has(e.target.value)) {
             updatedCountryCheckboxes.delete(e.target.value);
         } else {
-           updatedCountryCheckboxes.add(e.target.value);
+            updatedCountryCheckboxes.add(e.target.value);
         }
         this.props.onChangeCheckbox(updatedCountryCheckboxes);
     }
@@ -55,8 +57,8 @@ class Filter extends Component {
                         <input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
                                type="checkbox"
                                value={c}
-                               checked = {this.props.filterCountries.has(c)}
-                               onChange = {this.handleCheckboxChange}
+                               checked={this.props.filterCountries.has(c)}
+                               onChange={this.handleCheckboxChange}
                         />
                         {c}
                     </label>
@@ -70,19 +72,24 @@ class Filter extends Component {
 
                 <div className="topBar">
                     <button className="backBtn" type="button" name="ic-back" onClick={this.handleBackBtn}>
-                        <i className="material-icons">keyboard_arrow_left</i>
+                        <i className="material-icons">arrow_back</i>
                     </button>
                     <h1>Filter</h1>
-
                 </div>
+                <form onReset={this.handleReset} className="filter-content">
+                    <div className="expansionBar">
+                        <h2>Sort By :</h2>
+                        <div className="bar-right">
+                            <p>{this.props.currentSortType}</p>
+                            <i className="material-icons">expand_more</i>
+                        </div>
 
-                <form onReset = {this.handleReset}>
+                    </div>
                     <div className="sortBy">
-                        <p>Sort By :</p>
                         <div>
                             <label>
                                 <input type="radio" classID="sortFirstName"
-                                       name="sortType" value="firstName"
+                                       name="sortType" value="First Name"
                                        checked={this.props.currentSortType === "firstName"}
                                        onChange={this.handleSortChange}/>
                                 First Name
@@ -91,8 +98,8 @@ class Filter extends Component {
                         <div>
                             <label>
                                 <input type="radio" classID="sortLastName"
-                                       name="sortType" value="lastName"
-                                       checked={this.props.currentSortType === "lastName"}
+                                       name="sortType" value="Last Name"
+                                       checked={this.props.currentSortType === "Last Name"}
                                        onChange={this.handleSortChange}/>
                                 Last Name
                             </label>
@@ -100,7 +107,8 @@ class Filter extends Component {
                         <div>
                             <label>
                                 <input type="radio" classID="sortRecent"
-                                       name="sortType" value="recent" checked={this.props.currentSortType === "recent"}
+                                       name="sortType" value="Recently Contacted"
+                                       checked={this.props.currentSortType === "Recently Contacted"}
                                        onChange={this.handleSortChange}/>
                                 Recently Contacted
                             </label>
@@ -113,14 +121,12 @@ class Filter extends Component {
                         {checkboxCountries}
                     </div>
                     <div>
-                        <label><input className="clearBtn" type="reset" name="ic-back" value="Clear" />
+                        <label><input className="clearBtn" type="reset" name="ic-back" value="Clear"/>
                         </label>
-                        <button type="submit" onClick={this.handleSubmitBtn} className="sortBtn">Save the filter
+                        <button type="submit" onClick={this.handleSubmitBtn} className="submitBtn">Save the filter
                         </button>
                     </div>
                 </form>
-
-
 
 
             </div>
