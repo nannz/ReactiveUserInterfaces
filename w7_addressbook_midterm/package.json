@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/checkbox": "^0.32.0",
+    "@material/radio": "^0.32.0",
     "material-design-icons": "^3.0.1",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",

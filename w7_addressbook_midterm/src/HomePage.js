@@ -4,6 +4,8 @@ import Person from './Person'
 import Search from './Search'
 import Filter from './Filter'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -300,12 +302,14 @@ class HomePage extends Component {
                     <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
                         <i className="material-icons">tune</i>
                     </button>
+                    <MuiThemeProvider>
                     <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
                             onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
                             onChangeCheckbox={this.handleCheckboxChange}
                             uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}
                             handleReset={this.handleResetFilter}
                     />
+                    </MuiThemeProvider>
                     <Search onChange={this.onSearchChange} placeholderValue={this.state.searchValue}/>
                 </div>
                 <div className="filter-echo">

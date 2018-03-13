@@ -1,5 +1,18 @@
 import React, {Component} from 'react';
 import './Filter.css';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+const styles = {
+    block: {
+        maxWidth: 250,
+    },
+    checkbox: {
+        marginBottom: 16,
+    },
+};
 
 class Filter extends Component {
     constructor(props) {
@@ -47,22 +60,25 @@ class Filter extends Component {
         }
         this.props.onChangeCheckbox(updatedCountryCheckboxes);
     }
-
+// <label className="checkbox-custom-label">
+// {c}
+// <input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
+// className="checkbox-custom"
+// type="checkbox"
+// value={c}
+// checked={this.props.filterCountries.has(c)}
+// onChange={this.handleCheckboxChange}
+// />
+// </label>
     render() {
         const checkboxCountries = this.props.uniqueCountries.map((c, i) => {
             //console.log("this c"+ c);
             return (
-                <div key={i}>
-                    <label>
-                        <input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
-                               type="checkbox"
-                               value={c}
-                               checked={this.props.filterCountries.has(c)}
-                               onChange={this.handleCheckboxChange}
-                        />
-                        {c}
-                    </label>
-                </div>
+                <Checkbox  key = {i} classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
+                           label={c}  labelPosition="left"
+                           value={c} checked={this.props.filterCountries.has(c)}
+                           onCheck={this.handleCheckboxChange}
+                           style={styles.checkbox}/>
             )
         });
 
@@ -90,7 +106,7 @@ class Filter extends Component {
                             <label>
                                 <input type="radio" classID="sortFirstName"
                                        name="sortType" value="First Name"
-                                       checked={this.props.currentSortType === "firstName"}
+                                       checked={this.props.currentSortType === "First Name"}
                                        onChange={this.handleSortChange}/>
                                 First Name
                             </label>
