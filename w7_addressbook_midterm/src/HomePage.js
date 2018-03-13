@@ -80,6 +80,7 @@ class HomePage extends Component {
         //     searchShowPeople: newSearchShowPeople
         // });
     }
+
     removeSearchShowPeople(personID) {
         console.log("remove ", personID);
         let newSearchShowPeople = this.state.searchShowPeople.delete(personID);
@@ -87,7 +88,8 @@ class HomePage extends Component {
             searchShowPeople: newSearchShowPeople
         });
     }
-    clearSearchShowPeople(){
+
+    clearSearchShowPeople() {
         this.setState({
             searchShowPeople: new Set()
         })
@@ -179,6 +181,19 @@ class HomePage extends Component {
                     //5. number
                     console.log("searching number");
                     return people.number.toLowerCase().match(this.state.searchValue.toLowerCase());
+                }else if (people.city.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    //5. city
+                    console.log("searching city");
+                    return people.city.toLowerCase().match(this.state.searchValue.toLowerCase());
+                } else if (people.cityState.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    //6. cityState
+                    console.log("searching cityState");
+                    return people.cityState.toLowerCase().match(this.state.searchValue.toLowerCase());
+                }
+                else if (people.country.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    //7. cityState
+                    console.log("searching country");
+                    return people.country.toLowerCase().match(this.state.searchValue.toLowerCase());
                 }
             })
         }
@@ -219,6 +234,7 @@ class HomePage extends Component {
             })
         }
 
+        // search to show the hidder bar
         const peopleList = peopleCopy.map((person) => {
             //console.log(this.state.searchShowPeople.has(person.id));
             return (
@@ -230,17 +246,25 @@ class HomePage extends Component {
                         onClickPersonID={this.state.onClickPersonID} sortType={this.state.sortType}
                         showBar={this.state.onClickPersonID === person.id}
                         searchToShow={this.state.searchShowPeople.has(person.id)}
-                        searchText = {this.state.searchValue}
+                        searchText={this.state.searchValue}
                 />
             )
         });
-        // console.log(peopleList);
+        // search to show the hidder bar
         peopleList.forEach((personComponent) => {
             if (this.state.searchValue !== "") {
-                if (personComponent.props.firstName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false && personComponent.props.lastName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false) {
-                    if (personComponent.props.email.toLowerCase().includes(this.state.searchValue.toLowerCase())) {
+                //if the name doesn't have searchValue, then show the hidden bar when matches
+                if (personComponent.props.firstName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false
+                    && personComponent.props.lastName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false) {
+
+                    if (personComponent.props.email.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                        || personComponent.props.address.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                        || personComponent.props.number.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                        || personComponent.props.city.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                        || personComponent.props.cityState.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                        || personComponent.props.country.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                    ) {
                         if (!this.state.searchShowPeople.has(personComponent.props.id)) {
-                            console.log("add add add should only once.");
                             this.addSearchShowPeople(personComponent.props.id); //add it to the set
                         }
                     } else {
@@ -249,17 +273,16 @@ class HomePage extends Component {
                             this.removeSearchShowPeople(personComponent.props.id);
                         }
                     }
-                }else{
+                } else {
                     console.log(personComponent.props.id, "match name already");
                 }
-            }else{
-                if(this.state.searchShowPeople.size > 0) this.clearSearchShowPeople();
+            } else {
+                if (this.state.searchShowPeople.size > 0) this.clearSearchShowPeople();
             }
-
-
         });
         //here: if person.email.toLowerCase().match(this.state.searchValue.toLowerCase()); click the person(open the hidden bar ) & in the email, highlight the word
 
+        console.log(peopleList.length);
 
         //the filter echo buttons HUI XIAN
         const filterCountriesArray = Array.from(this.state.filterCountries).sort();
@@ -291,13 +314,17 @@ class HomePage extends Component {
                             onClick={this.handleFilterEchoSortBtn}>sort by {this.state.sortType}</button>}
                     {/*<button type="button" className="filter-echo-sortType" disabled>sort by {this.state.sortType}</button>*/}
                     {filterCountriesEchoBtns}
-
                 </div>
                 <div className="list">
                     {/*<div className="initial-bar">A</div>*/}
                     {peopleList}
                 </div>
 
+                <div className="emptyState" style={{display: peopleCopy.length > 0 ? 'none' : 'block'}}>
+                    <h2>Oh no search result</h2>
+                    <p>try to unclick the tags</p>
+                    <p> or decrease the search input~</p>
+                </div>
 
             </div>
 

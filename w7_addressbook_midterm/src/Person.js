@@ -7,16 +7,11 @@ class Person extends Component {
         super(props);
         this.onNameClick = this.onNameClick.bind(this);
         this.actionButtonClicked = this.actionButtonClicked.bind(this);
-        // this.state = {
-        //     showBar: false
-        // };
+        this.handleSearchHighlight = this.handleSearchHighlight.bind(this);
     }
 
     onNameClick() {
         this.props.onNameClick(this.props.id);
-        // this.setState({
-        //     showBar: !this.state.showBar
-        // });
     }
 
     actionButtonClicked(e) {
@@ -24,21 +19,32 @@ class Person extends Component {
         console.log(this.props.id + "/ " + e.currentTarget.value + " clicked");
     }
 
-    render() {
-        let nameOutput
-        let emailOutput;
-        if(this.props.email.includes(this.props.searchText)) {
+    handleSearchHighlight(prop) {
+        let output;
+        if (this.props.searchText !== "" && prop.toLowerCase().includes(this.props.searchText.toLowerCase())) {
             //highlight the text
-            let pos = this.props.email.search(this.props.searchText);
-            let firstPart = this.props.email.slice(0, pos);
+            let pos = prop.toLowerCase().search(this.props.searchText.toLowerCase());
+            let firstPart = prop.slice(0, pos);
             let secondPart = "";
-            if ((pos + this.props.searchText.length) !== this.props.email.length) {
-                secondPart = this.props.email.slice(pos + this.props.searchText.length );
+            if ((pos + this.props.searchText.length) !== prop.length) {
+                secondPart = prop.slice(pos + this.props.searchText.length);
             }
-            emailOutput = (<p>{firstPart}<span style={{color: '#00BFFF'}}>{this.props.searchText}</span>{secondPart}</p>);
-        }else{
-            emailOutput = (<p>{this.props.email}</p>);
+            output = (
+                <span>{firstPart}<span style={{color: '#00BFFF'}}>{this.props.searchText}</span>{secondPart}</span>);
+        } else {
+            output = (<span>{prop}</span>);
         }
+        return output;
+    }
+
+    render() {
+
+        let combinedAdd = this.props.address
+            + (this.props.city !== "" ? (", " + this.props.city) : "")
+            + (this.props.cityState !== "" ? (", " + this.props.cityState) : "")
+            + (this.props.country !== "" ? (", " + this.props.country) : "");
+        console.log(combinedAdd);
+        let addressOutput = this.handleSearchHighlight(combinedAdd);
 
 
         return (
@@ -58,10 +64,8 @@ class Person extends Component {
                     })()}</h2>
                 </div>
 
-
-                {/*<PersonHiddenBar showBar={this.state.showBar} name={this.props.name} number = {this.props.number} email={this.props.email} address={this.props.address}/>*/}
                 <div className="PersonHiddenBar"
-                     // style={{display: (this.state.showBar && this.props.onClickPersonID === this.props.id) ? 'block' : 'none'}}
+                    // style={{display: (this.state.showBar && this.props.onClickPersonID === this.props.id) ? 'block' : 'none'}}
                      style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
                 >
                     <div className="action">
@@ -80,16 +84,19 @@ class Person extends Component {
                     </div>
                     <div className="info">
                         <div className="number-line"><i className="material-icons md-18">call</i>
-                            <p>{this.props.number}</p></div>
+                            <p>{this.handleSearchHighlight(this.props.number)}</p></div>
                         <div className="email-line"><i className="material-icons md-18">email</i>
-                            {/*<p>{this.props.email}</p>*/}
-                            {emailOutput}
+                            <p>{this.handleSearchHighlight(this.props.email)}</p>
                         </div>
                         <div className="address-line"><i className="material-icons md-18">info_outline</i>
-                            <p>{this.props.address
-                            + (this.props.city !== "" ? (", " + this.props.city) : "")
-                            + (this.props.cityState !== "" ? (", " + this.props.cityState): "")
-                            + (this.props.country !== "" ? (", " + this.props.country): "")}</p></div>
+                            <p>{addressOutput}</p>
+                            {/*<p>{*/}
+                            {/*this.props.address*/}
+                            {/*+ (this.props.city !== "" ? (", " + this.props.city) : "")*/}
+                            {/*+ (this.props.cityState !== "" ? (", " + this.props.cityState): "")*/}
+                            {/*+ (this.props.country !== "" ? (", " + this.props.country): "")}*/}
+                            {/*</p>*/}
+                        </div>
                     </div>
                 </div>
 

@@ -14,11 +14,18 @@ h1{
 }
 
 .app-bar{
+    position:relative;
+    /*z-index: 1;*/
     background-color: #F5F5F5;
     padding-bottom: 14px;
     padding-top: 14px;
     display: flex;
     flex-wrap:wrap;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.list{
+    overflow: scroll;
 }
 
 .filterBtn{
@@ -38,4 +45,11 @@ h1{
 
 .filter-echo button:focus {
     background-color: darkgrey;
+}
+
+.emptyState {
+    position:relative;
+    display: flex;
+    align-items:center;
+    text-align: center;
 }
