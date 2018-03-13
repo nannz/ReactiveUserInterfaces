@@ -30,12 +30,46 @@ h2 {
 
 button {
     outline: 0px;
+
+    position: relative;
+    overflow: visible;
+}
+button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(15, 15);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(30, 30);
+    }
+}
+button:focus:not(:active)::after {
+    animation: ripple 0.5s ease-out;
 }
 
-button:active {
-    background: rgba(0, 0, 0, 0.38);
-    color: white;
-}
+
+/*button:active {*/
+    /*background: rgba(0, 0, 0, 0.38);*/
+    /*color: white;*/
+/*}*/
 
 .info {
     padding: 8px 18px 8px 18px;
