@@ -21,9 +21,10 @@ class Person extends Component {
 
     handleSearchHighlight(prop) {
         let output;
-        if (this.props.searchText !== "" && prop.toLowerCase().includes(this.props.searchText.toLowerCase())) {
+        let lowerCaseProp = prop.toLowerCase();
+        if (this.props.searchText !== "" && lowerCaseProp.includes(this.props.searchText.toLowerCase())) {
             //highlight the text
-            let pos = prop.toLowerCase().search(this.props.searchText.toLowerCase());
+            let pos = lowerCaseProp.search(this.props.searchText.toLowerCase());
             let firstPart = prop.slice(0, pos);
             let secondPart = "";
             if ((pos + this.props.searchText.length) !== prop.length) {
