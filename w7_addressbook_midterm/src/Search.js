@@ -23,7 +23,7 @@ class Search extends Component {
         return (
             <div className="Search">
                 <i className="material-icons">search</i>
-                <input type="text" name = "search" onChange={this.onInputChange} placeholder={this.placeholder}/>
+                <input type="text" name = "search" onChange={this.onInputChange} placeholder={this.props.placeholderValue === "" ? this.placeholder : this.props.placeholderValue}/>
             </div>
 
         );

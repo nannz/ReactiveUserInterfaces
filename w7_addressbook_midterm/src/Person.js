@@ -7,16 +7,16 @@ class Person extends Component {
         super(props);
         this.onNameClick = this.onNameClick.bind(this);
         this.actionButtonClicked = this.actionButtonClicked.bind(this);
-        this.state = {
-            showBar: false
-        };
+        // this.state = {
+        //     showBar: false
+        // };
     }
 
     onNameClick() {
         this.props.onNameClick(this.props.id);
-        this.setState({
-            showBar: !this.state.showBar
-        });
+        // this.setState({
+        //     showBar: !this.state.showBar
+        // });
     }
 
     actionButtonClicked(e) {
@@ -25,6 +25,21 @@ class Person extends Component {
     }
 
     render() {
+        let nameOutput
+        let emailOutput;
+        if(this.props.email.includes(this.props.searchText)) {
+            //highlight the text
+            let pos = this.props.email.search(this.props.searchText);
+            let firstPart = this.props.email.slice(0, pos);
+            let secondPart = "";
+            if ((pos + this.props.searchText.length) !== this.props.email.length) {
+                secondPart = this.props.email.slice(pos + this.props.searchText.length );
+            }
+            emailOutput = (<p>{firstPart}<span style={{color: '#00BFFF'}}>{this.props.searchText}</span>{secondPart}</p>);
+        }else{
+            emailOutput = (<p>{this.props.email}</p>);
+        }
+
 
         return (
             <div className="Person">
@@ -46,7 +61,9 @@ class Person extends Component {
 
                 {/*<PersonHiddenBar showBar={this.state.showBar} name={this.props.name} number = {this.props.number} email={this.props.email} address={this.props.address}/>*/}
                 <div className="PersonHiddenBar"
-                     style={{display: (this.state.showBar && this.props.onClickPersonID === this.props.id) ? 'block' : 'none'}}>
+                     // style={{display: (this.state.showBar && this.props.onClickPersonID === this.props.id) ? 'block' : 'none'}}
+                     style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
+                >
                     <div className="action">
 
                         <button type="button" name="action-call" value="call" onClick={this.actionButtonClicked}><i
@@ -65,7 +82,9 @@ class Person extends Component {
                         <div className="number-line"><i className="material-icons md-18">call</i>
                             <p>{this.props.number}</p></div>
                         <div className="email-line"><i className="material-icons md-18">email</i>
-                            <p>{this.props.email}</p></div>
+                            {/*<p>{this.props.email}</p>*/}
+                            {emailOutput}
+                        </div>
                         <div className="address-line"><i className="material-icons md-18">info_outline</i>
                             <p>{this.props.address
                             + (this.props.city !== "" ? (", " + this.props.city) : "")

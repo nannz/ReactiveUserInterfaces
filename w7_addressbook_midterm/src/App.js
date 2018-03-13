@@ -93,6 +93,42 @@ class App extends Component {
                     country:"Japan",
                     lastContactTime: new Date(2014, 12,31)
                 },
+                {
+                    id: 8,
+                    firstName: "Igino",
+                    lastName: "Zello",
+                    number: "03631767459",
+                    email: "igino@zello.com",
+                    address: "Via Pisanelli 12",
+                    city:"Benestare",
+                    cityState:"Reggio Calabria",
+                    country:"Italy",
+                    lastContactTime: new Date(2004, 12,31)
+                },
+                {
+                    id: 9,
+                    firstName: "Luke",
+                    lastName: "Carew",
+                    number: "(08) 9082 3254",
+                    email: "luke@hotmail.com",
+                    address: "93 Carnegie Avenue",
+                    city:"Kojarena",
+                    cityState:"Western Australia",
+                    country:"Australia",
+                    lastContactTime: new Date(2010, 5,31)
+                },
+                {
+                    id: 10,
+                    firstName: "Jeffrey",
+                    lastName: "Lehman",
+                    number: "+86 (21) 20595009",
+                    email: "jsl569@nyu.edu",
+                    address: "CAV 1401",
+                    city:"Bronxville",
+                    cityState:"New York",
+                    country:"United States",
+                    lastContactTime: new Date(2014, 9,1)
+                }
             ]
         };
 

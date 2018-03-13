@@ -10,32 +10,14 @@ class Filter extends Component {
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
         this.handleReset = this.handleReset.bind(this);
-        //this.props.filterCountries
-        //this.props.uniqueCountries
-        // this.state={
-        //     selectedCountryCheckboxes : this.props.filterCountries, //a set
-        //     selectedSortType: this.props.currentSortType
-        // }
     }
 
     handleReset(){
-        // let emptyCountryCheckboxes = new Set(this.state.selectedCountryCheckboxes);
-        // emptyCountryCheckboxes = emptyCountryCheckboxes.clear();
-        // this.setState({
-        //     selectedSortType: this.props.currentSortType,
-        //     // selectedCountryCheckboxes:emptyCountryCheckboxes.clear()
-        //     selectedCountryCheckboxes:emptyCountryCheckboxes
-        // })
         console.log("clear btn in filter clicked");
         this.props.handleReset();
     }
     handleSubmitBtn(e){
         e.preventDefault();
-        //pass the new sort type + selected Country to homePage.js + close the modal
-        //this.props.onChangeSortType(this.props.currentSortType);//this.state.selectedSortType);
-        //console.log(this.state.selectedCountryCheckboxes);
-        //this.props.onChangeCheckbox(this.state.selectedCountryCheckboxes);
-
         this.props.onCloseModal();
     }
     handleBackBtn(){
@@ -49,25 +31,18 @@ class Filter extends Component {
     }
 
     handleSortChange(e) {
-        // this.setState = {
-        //     selectedSortType: e.target.value
-        // }
         this.props.onChangeSortType(e.target.value); //firstName/lastName/recent
     }
 
     handleCheckboxChange(e){
-        // let updatedCountryCheckboxes = new Set(this.state.selectedCountryCheckboxes);
+        //e.preventDefault();
         let updatedCountryCheckboxes = new Set(this.props.filterCountries);
-        // if (this.state.selectedCountryCheckboxes.has(e.target.value)) {
 
         if (this.props.filterCountries.has(e.target.value)) {
             updatedCountryCheckboxes.delete(e.target.value);
         } else {
            updatedCountryCheckboxes.add(e.target.value);
         }
-        // this.setState({
-        //     selectedCountryCheckboxes: updatedCountryCheckboxes
-        // });
         this.props.onChangeCheckbox(updatedCountryCheckboxes);
     }
 
@@ -88,7 +63,6 @@ class Filter extends Component {
                 </div>
             )
         });
-        console.log(checkboxCountries);
 
 
         return (

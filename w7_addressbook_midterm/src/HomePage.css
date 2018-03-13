@@ -29,3 +29,13 @@ h1{
     margin-top: 14px;
     background-color: transparent;
 }
+
+.filter-echo button{
+    border: 1px solid lightgray;
+    border-radius: 25px;
+    background-color: transparent;
+}
+
+.filter-echo button:focus {
+    background-color: darkgrey;
+}

@@ -12,7 +12,7 @@
     display: flex;
 }
 
-input {
+.Search input {
     width: 284px;
     height: 100%;
     border: 0;
