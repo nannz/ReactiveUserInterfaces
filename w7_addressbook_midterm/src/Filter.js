@@ -118,16 +118,19 @@ class Filter extends Component {
                         <RadioButton
                             value="First Name"
                             label="First Name"
+                            //checked = {this.props.currentSortType === "First Name"}
                             style={styles.radioButton}
                         />
                         <RadioButton
                             value="Last Name"
                             label="Last Name"
+                            //checked = {this.props.currentSortType === "Last Name"}
                             style={styles.radioButton}
                         />
                         <RadioButton
                             value="Recently Contacted"
                             label="Recently Contacted"
+                            //checked = {this.props.currentSortType === "Recently Contacted"}
                             style={styles.radioButton}
                         />
                     </RadioButtonGroup>
@@ -174,11 +177,9 @@ class Filter extends Component {
                             {checkboxCountries}
                         </div>
                     </div>
-                    <div>
-                        <label><input className="clearBtn" type="reset" name="ic-back" value="Clear"/>
-                        </label>
-                        <button type="submit" onClick={this.handleSubmitBtn} className="submitBtn">Save the filter
-                        </button>
+                    <div className = "persistBtnArea">
+                        <input className="clearBtn" type="reset" name="ic-back" value="Clear"/>
+                        <input type="submit" onClick={this.handleSubmitBtn} className="submitBtn" value="Save the filter"/>
                     </div>
                 </form>
 

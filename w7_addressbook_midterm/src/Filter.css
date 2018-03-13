@@ -66,6 +66,13 @@ input {
     font-size: 14px;
 }
 
+.expansionBar button{
+    padding:0;
+    margin:0;
+    border:0;
+    background-color: transparent;
+}
+
 .sortTypes {
     padding-top:8px;
     padding-left:16px;
@@ -75,23 +82,62 @@ input {
     padding-left:16px;
 }
 
-
-.submitBtn {
-    position: absolute;
+.persistBtnArea{
+    position: fixed;
+    z-index: 1;
     left: 0;
     bottom: 0;
     width: 100%;
-    color: deepskyblue;
-    float: none;
-    font-size: 14pt;
+    height:48px;
+    /*background-color: #F5F5F5;*/
+
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    border-top:1px solid rgb(244,244,244);
+
 }
 
-.submitBtn:hover,
-.submitBtn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.persistBtnArea input{
+    font-size:14px;
+    color:deepskyblue;
+    height: 36px;
+    min-width: 88px;
+    margin-right: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 2px;
+    background-color: transparent;
+    border:0px;
+
+
+/*Touch target height: 48dp*/
 }
+
+/*.submitBtn {*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*color: deepskyblue;*/
+    /*float: none;*/
+    /*font-size: 14pt;*/
+    /*minimum-width: 88px;*/
+    /*height: 36px;*/
+    /*Elevation: 0px;*/
+/*}*/
+
+/*.submitBtn:hover,*/
+/*.submitBtn:focus {*/
+    /*color: black;*/
+    /*text-decoration: none;*/
+    /*cursor: pointer;*/
+/*}*/
+
+
+
+
 
 @keyframes animateAppear {
     from {
