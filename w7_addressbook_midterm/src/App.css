@@ -1,4 +1,9 @@
 .App {
     text-align: left;
-    font-family: 'Roboto', Helvetica, sans-serif;;
+    font-family: 'Roboto', Helvetica, sans-serif;
+
 }
+
+/*body::-webkit-scrollbar {*/
+    /*width: 0em;*/
+/*}*/

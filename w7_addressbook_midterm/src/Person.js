@@ -89,7 +89,7 @@ class Person extends Component {
                         <div className="email-line"><i className="material-icons md-18">email</i>
                             <p>{this.handleSearchHighlight(this.props.email)}</p>
                         </div>
-                        <div className="address-line"><i className="material-icons md-18">info_outline</i>
+                        <div className="address-line"><i className="material-icons md-18">home</i>
                             <p>{addressOutput}</p>
                             {/*<p>{*/}
                             {/*this.props.address*/}
