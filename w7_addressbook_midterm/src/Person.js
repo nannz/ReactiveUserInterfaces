@@ -55,9 +55,9 @@ class Person extends Component {
                     {/*<h2>{this.props.firstName + " " + this.props.lastName}</h2>*/}
                     <h2>{(() => {
                         switch (this.props.sortType) {
-                            case "firstName":
+                            case "First Name":
                                 return this.props.firstName + " " + this.props.lastName;
-                            case "lastName":
+                            case "Last Name":
                                 return this.props.lastName + ", " + this.props.firstName;
                             default:
                                 return this.props.firstName + " " + this.props.lastName;

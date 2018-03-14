@@ -316,7 +316,6 @@ class HomePage extends Component {
                     {this.state.sortType !== "First Name" &&
                     <button type="button" className="filter-echo-sortType" value={this.state.sortType}
                             onClick={this.handleFilterEchoSortBtn}>sort by {this.state.sortType}</button>}
-                    {/*<button type="button" className="filter-echo-sortType" disabled>sort by {this.state.sortType}</button>*/}
                     {filterCountriesEchoBtns}
                 </div>
                 <div className="list">
