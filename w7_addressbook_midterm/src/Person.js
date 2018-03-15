@@ -61,6 +61,9 @@ class Person extends Component {
                         }
                     })()}</h2>
                 </div>
+                <svg className="divide-border" style={{display: (this.props.showBar || this.props.searchToShow) ? 'none' : 'block'}}>
+                    <line x1="72px" y1="0" x2="360px" y2="0" />
+                </svg>
 
                 <div className={"PersonHiddenBar" + ((this.props.showBar || this.props.searchToShow) ? "":" collapsed")}
                      //comment the display css and try do the CSS animation // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}

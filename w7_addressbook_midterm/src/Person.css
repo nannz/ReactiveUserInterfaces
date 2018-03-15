@@ -23,6 +23,15 @@ h2 {
     font-weight: 500;
 }
 
+.divide-border{
+    width:100%;
+    height:1px;
+}
+.divide-border line{
+    stroke:#E0E0E0;
+    stroke-width:1
+}
+
 .action {
     display: flex;
     justify-content: space-evenly;
