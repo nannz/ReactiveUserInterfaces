@@ -299,11 +299,12 @@ class HomePage extends Component {
             <div className="HomePage">
                 <div className="app-bar">
                     <h1>Student Address Book</h1>
+                    <MuiThemeProvider>
                     <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
                         <i className="material-icons">tune</i>
                     </button>
-                    <MuiThemeProvider>
-                    <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
+                    <Filter
+                        showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
                             onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
                             onChangeCheckbox={this.handleCheckboxChange}
                             uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}

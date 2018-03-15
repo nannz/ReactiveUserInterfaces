@@ -45,6 +45,10 @@ h1{
     background-color: transparent;
 }
 
+.filterBtn:active + .Filter{
+
+}
+
 .filter-echo button{
     border: 1px solid lightgray;
     border-radius: 25px;

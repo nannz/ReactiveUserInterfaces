@@ -93,8 +93,9 @@ class Filter extends Component {
         });
 
         return (
-            <div className="Filter" style={{display: this.props.showFilter ? 'block' : 'none'}}>
-
+            <div className={"Filter" + (this.props.showFilter ? "" : " hidden")}
+                 // style={{display: this.props.showFilter ? 'block' : 'none'}}
+            >
                 <div className="topBar">
                     <button className="backBtn" type="button" name="ic-back" onClick={this.handleBackBtn}>
                         <i className="material-icons">arrow_back</i>
@@ -111,6 +112,7 @@ class Filter extends Component {
                             <i className="material-icons">expand_more</i>
                         </button>
                     </div>
+                    
                     <RadioButtonGroup className="sortTypes" name="sortType" labelPosition="left"
                                       defaultSelected={this.props.currentSortType}
                                       onChange={this.handleSortChange}

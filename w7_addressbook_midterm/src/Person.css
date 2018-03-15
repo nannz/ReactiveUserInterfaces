@@ -27,7 +27,6 @@ h2 {
     display: flex;
     justify-content: space-evenly;
 }
-
 button {
     outline: 0;
     position: relative;
