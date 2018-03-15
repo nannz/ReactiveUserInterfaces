@@ -29,8 +29,7 @@ h2 {
 }
 
 button {
-    outline: 0px;
-
+    outline: 0;
     position: relative;
     overflow: visible;
 }
@@ -65,46 +64,29 @@ button:focus:not(:active)::after {
     animation: ripple 0.5s ease-out;
 }
 
-
-/*button:active {*/
-    /*background: rgba(0, 0, 0, 0.38);*/
-    /*color: white;*/
-/*}*/
-
 .info {
     padding: 8px 18px 8px 18px;
 }
-
 p {
     margin: 0;
 }
 
-.PersonHiddenBar {
-    display:none;
-    padding: 8px;
-    padding-bottom: 0;
-    background-color: #FAFAFA;
-    opacity:0;
-    /*animation-name: personHiddenBarAppear;*/
-    /*animation-duration: 0.5s;*/
-}
+
 
 .PersonHiddenBar .material-icons.md-18 {
     font-size: 18px;
     padding-right: 10px;
 }
-
 .PersonHiddenBar .p {
     font-size: 12pt;
 }
-
 .PersonHiddenBar .action {
     margin-bottom: 8px;
+    padding-top:8px;
 }
 .PersonHiddenBar .action button{
     flex-direction: column;
 }
-
 .PersonHiddenBar .info {
     display: flex;
     flex-direction: column;
@@ -114,32 +96,40 @@ p {
     padding-right: 10px;
     border-top: 1px solid #E0E0E0
 }
-
 .PersonHiddenBar .number-line {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
 }
-
 .PersonHiddenBar .email-line {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
 }
-
 .PersonHiddenBar .address-line {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
 }
 
-.Person:hover .PersonHiddenBar {
-    /*display: block;*/
-    opacity: 1;
-    animation: display-none-transition 1s both;
+
+.PersonHiddenBar {
+    display:block;
+    /*opacity:1;*/
+    max-height:186px;
+    padding: 0 8px 0 8px;
+    background-color: #FAFAFA;
+    overflow:hidden;
+    transition:max-height 0.5s ease-in-out;
+
 }
-@keyframes display-none-transition {
-    0% {
-        opacity: 0;
-    }
+.PersonHiddenBar.collapsed {
+    overflow:hidden;
+    max-height:0;
+    padding-top:0;
 }
+
+
+
+
+

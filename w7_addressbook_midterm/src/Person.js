@@ -16,7 +16,6 @@ class Person extends Component {
 
     actionButtonClicked(e) {
         e.preventDefault;
-        console.log(this.props.id + "/ " + e.currentTarget.value + " clicked");
     }
 
     handleSearchHighlight(prop) {
@@ -44,7 +43,6 @@ class Person extends Component {
             + (this.props.city !== "" ? (", " + this.props.city) : "")
             + (this.props.cityState !== "" ? (", " + this.props.cityState) : "")
             + (this.props.country !== "" ? (", " + this.props.country) : "");
-        console.log(combinedAdd);
         let addressOutput = this.handleSearchHighlight(combinedAdd);
 
 
@@ -52,7 +50,6 @@ class Person extends Component {
             <div className="Person">
                 <div className="name-bar" onClick={this.onNameClick}>
                     <div className="avatar"></div>
-                    {/*<h2>{this.props.firstName + " " + this.props.lastName}</h2>*/}
                     <h2>{(() => {
                         switch (this.props.sortType) {
                             case "First Name":
@@ -65,12 +62,11 @@ class Person extends Component {
                     })()}</h2>
                 </div>
 
-                <div className="PersonHiddenBar"
-                    // style={{display: (this.state.showBar && this.props.onClickPersonID === this.props.id) ? 'block' : 'none'}}
-                     style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
+                <div className={"PersonHiddenBar" + ((this.props.showBar || this.props.searchToShow) ? "":" collapsed")}
+                     //comment the display css and try do the CSS animation
+                     // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
                 >
                     <div className="action">
-
                         <button type="button" name="action-call" value="call" onClick={this.actionButtonClicked}><i
                             className="material-icons">call</i><p>Call</p></button>
                         <button type="button" name="action-email" value="email" onClick={this.actionButtonClicked}><i
@@ -91,12 +87,6 @@ class Person extends Component {
                         </div>
                         <div className="address-line"><i className="material-icons md-18">home</i>
                             <p>{addressOutput}</p>
-                            {/*<p>{*/}
-                            {/*this.props.address*/}
-                            {/*+ (this.props.city !== "" ? (", " + this.props.city) : "")*/}
-                            {/*+ (this.props.cityState !== "" ? (", " + this.props.cityState): "")*/}
-                            {/*+ (this.props.country !== "" ? (", " + this.props.country): "")}*/}
-                            {/*</p>*/}
                         </div>
                     </div>
                 </div>
