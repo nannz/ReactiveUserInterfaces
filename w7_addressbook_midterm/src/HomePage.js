@@ -236,9 +236,7 @@ class HomePage extends Component {
             })
         }
 
-        // search to show the hidder bar
         const peopleList = peopleCopy.map((person) => {
-            //console.log(this.state.searchShowPeople.has(person.id));
             return (
                 <Person key={person.id} id={person.id} firstName={person.firstName} lastName={person.lastName}
                         number={person.number} email={person.email}
@@ -271,7 +269,6 @@ class HomePage extends Component {
                         }
                     } else {
                         if (this.state.searchShowPeople.has(personComponent.props.id)) {
-                            //remove it from the set
                             this.removeSearchShowPeople(personComponent.props.id);
                         }
                     }
@@ -282,16 +279,13 @@ class HomePage extends Component {
                 if (this.state.searchShowPeople.size > 0) this.clearSearchShowPeople();
             }
         });
-        //here: if person.email.toLowerCase().match(this.state.searchValue.toLowerCase()); click the person(open the hidden bar ) & in the email, highlight the word
-
-        console.log(peopleList.length);
 
         //the filter echo buttons HUI XIAN
         const filterCountriesArray = Array.from(this.state.filterCountries).sort();
         const filterCountriesEchoBtns = filterCountriesArray.map((c, i) => {
             return (
                 <button key={i} type="button" className="filter-echo-countries" value={c}
-                        onClick={this.handleFilterEchoCountryBtn}>{c}</button>
+                        onClick={this.handleFilterEchoCountryBtn}>{c}<i className="material-icons">clear</i></button>
             )
         });
 
@@ -303,8 +297,7 @@ class HomePage extends Component {
                     <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
                         <i className="material-icons">tune</i>
                     </button>
-                    <Filter
-                        showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
+                    <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
                             onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
                             onChangeCheckbox={this.handleCheckboxChange}
                             uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}
@@ -316,7 +309,7 @@ class HomePage extends Component {
                 <div className="filter-echo">
                     {this.state.sortType !== "First Name" &&
                     <button type="button" className="filter-echo-sortType" value={this.state.sortType}
-                            onClick={this.handleFilterEchoSortBtn}>sort by {this.state.sortType}</button>}
+                            onClick={this.handleFilterEchoSortBtn}>sort by {this.state.sortType} </button>}
                     {filterCountriesEchoBtns}
                 </div>
                 <div className="list">

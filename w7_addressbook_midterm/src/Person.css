@@ -99,16 +99,19 @@ p {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
+    align-items: center;
 }
 .PersonHiddenBar .email-line {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
+    align-items: center;
 }
 .PersonHiddenBar .address-line {
     display: flex;
     flex-direction: row;
     padding-bottom: 10px;
+    align-items:flex-start;
 }
 
 

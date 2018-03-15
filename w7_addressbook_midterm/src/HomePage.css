@@ -34,7 +34,16 @@ h1{
 .filter-echo{
     padding-left: 16px;
     padding-top: 8px;
+    position: relative;
+    top:124px;
+    display: flex;
+    flex-direction: row;
 }
+
+.filter-echo .material-icons {
+    font-size: 12px;
+}
+
 
 .filterBtn{
     border:0;
@@ -43,22 +52,21 @@ h1{
     height:24px;
     margin-top: 14px;
     background-color: transparent;
-}
-
-.filterBtn:active + .Filter{
 
 }
+
 
 .filter-echo button{
     border: 1px solid lightgray;
     border-radius: 25px;
     background-color: transparent;
     margin-right: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.filter-echo button:focus {
-    background-color: darkgrey;
-}
+
 
 .emptyState {
     position:relative;

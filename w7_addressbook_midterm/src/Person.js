@@ -63,8 +63,7 @@ class Person extends Component {
                 </div>
 
                 <div className={"PersonHiddenBar" + ((this.props.showBar || this.props.searchToShow) ? "":" collapsed")}
-                     //comment the display css and try do the CSS animation
-                     // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
+                     //comment the display css and try do the CSS animation // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
                 >
                     <div className="action">
                         <button type="button" name="action-call" value="call" onClick={this.actionButtonClicked}><i

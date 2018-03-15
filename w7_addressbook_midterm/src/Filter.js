@@ -112,7 +112,6 @@ class Filter extends Component {
                             <i className="material-icons">expand_more</i>
                         </button>
                     </div>
-                    
                     <RadioButtonGroup className="sortTypes" name="sortType" labelPosition="left"
                                       defaultSelected={this.props.currentSortType}
                                       onChange={this.handleSortChange}
