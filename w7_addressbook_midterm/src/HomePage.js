@@ -9,17 +9,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class HomePage extends Component {
     constructor(props) {
         super(props);
+        //generate the array of the unique country list.
         this.uniqueCountryList = this.props.people.map((person) => person.country).filter((value, index, self) => self.indexOf(value) === index).sort();
-        //set way to have unique Country
-        //this.uniqueCountryList = new Set(this.props.people.map((person) => person.country).sort());
+        //set way to have unique Country: this.uniqueCountryList = new Set(this.props.people.map((person) => person.country).sort());
         this.state = {
             searchValue: "",
             showFilter: false,
             sortType: "First Name",
             onClickPersonID: 0,
-
             filterCountries: new Set(), //a set of the countries that filtered
-
             searchShowPeople: new Set()//Set(id:xx)
         };
         this.onSearchChange = this.onSearchChange.bind(this);
@@ -48,7 +46,6 @@ class HomePage extends Component {
     }
 
     handleResetFilter() {
-        console.log("reset!");
         this.setState({
             sortType: "First Name",
             filterCountries: new Set()
@@ -74,18 +71,16 @@ class HomePage extends Component {
     }
 
     addSearchShowPeople(personID) {
-        console.log("add ", personID);
-        //if the people set doesn't have the id, ADD it
-        let newSearchShowPeople = this.state.searchShowPeople.add(personID);
-        console.log(newSearchShowPeople);
-        // this.setState({
-        //     searchShowPeople: newSearchShowPeople
-        // });
+        let newSearchShowPeople = new Set(this.state.searchShowPeople);//copy the set
+        newSearchShowPeople.add(personID);//add id of the new person we want to show into the set
+        this.setState({
+            searchShowPeople: newSearchShowPeople
+        });
     }
 
     removeSearchShowPeople(personID) {
-        console.log("remove ", personID);
-        let newSearchShowPeople = this.state.searchShowPeople.delete(personID);
+        let newSearchShowPeople = new Set(this.state.searchShowPeople);
+        newSearchShowPeople.delete(personID);
         this.setState({
             searchShowPeople: newSearchShowPeople
         });
@@ -125,14 +120,14 @@ class HomePage extends Component {
                 onClickPersonID: 0
             });
         }
-
-
     }
 
     render() {
         let peopleCopy = this.props.people.slice();
 
         //filter tab results
+        //filter the list for the filtered countries
+        //join the people arrays together
         let filterCountries = Array.from(this.state.filterCountries);
         if (filterCountries.length !== this.uniqueCountryList.length && filterCountries.length !== 0) {
             let peopleFilterTotal = [];
@@ -149,53 +144,42 @@ class HomePage extends Component {
                     peopleFilterTotal = peopleFilterTemp;
                 }
             });
-            //console.log(peopleFilterTotal);
             peopleCopy = peopleFilterTotal;
-        } else if (filterCountries.length === this.uniqueCountryList.length) {
-            console.log("all countries are checked");
+        } else if (filterCountries.length === this.uniqueCountryList.length) {//all countries are checked
             peopleCopy = this.props.people.slice();
-        } else if (filterCountries.length === 0) {
-            console.log("no country is checked!");
+        } else if (filterCountries.length === 0) {//no country is checked
             peopleCopy = this.props.people.slice();
         }
 
         //search bar function
         if (this.state.searchValue !== '') {
+            let lowerCasedSearchValue = this.state.searchValue.slice(0).toLowerCase();
             peopleCopy = peopleCopy.filter(people => {
-                if (people.firstName.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                if (people.firstName.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //1. firstname
-                    console.log("searching first name");
-                    return people.firstName.toLowerCase().match(this.state.searchValue.toLowerCase());
-                } else if (people.lastName.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.firstName.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                } else if (people.lastName.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //2.last name
-                    console.log("searching last name");
-                    return people.lastName.toLowerCase().match(this.state.searchValue.toLowerCase());
-                } else if (people.email.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.lastName.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                } else if (people.email.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //3.email
-                    console.log("searching email");
                     //!!!!call setState function, show hiddenbar!!!!
-                    return people.email.toLowerCase().match(this.state.searchValue.toLowerCase())
-                } else if (people.address.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.email.slice(0).toLowerCase().match(lowerCasedSearchValue)
+                } else if (people.address.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //4.address
-                    console.log("searching address");
-                    return people.address.toLowerCase().match(this.state.searchValue.toLowerCase());
-                } else if (people.number.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.address.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                } else if (people.number.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //5. number
-                    console.log("searching number");
-                    return people.number.toLowerCase().match(this.state.searchValue.toLowerCase());
-                }else if (people.city.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.number.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                }else if (people.city.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //5. city
-                    console.log("searching city");
-                    return people.city.toLowerCase().match(this.state.searchValue.toLowerCase());
-                } else if (people.cityState.toLowerCase().match(this.state.searchValue.toLowerCase())) {
+                    return people.city.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                } else if (people.cityState.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //6. cityState
-                    console.log("searching cityState");
-                    return people.cityState.toLowerCase().match(this.state.searchValue.toLowerCase());
-                }
-                else if (people.country.toLowerCase().match(this.state.searchValue.toLowerCase())) {
-                    //7. cityState
-                    console.log("searching country");
-                    return people.country.toLowerCase().match(this.state.searchValue.toLowerCase());
+                    return people.cityState.slice(0).toLowerCase().match(lowerCasedSearchValue);
+                } else if (people.country.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
+                    //7. country
+                    return people.country.slice(0).toLowerCase().match(lowerCasedSearchValue);
                 }
             })
         }
@@ -253,19 +237,23 @@ class HomePage extends Component {
         // search to show the hidder bar
         peopleList.forEach((personComponent) => {
             if (this.state.searchValue !== "") {
-                //if the name doesn't have searchValue, then show the hidden bar when matches
-                if (personComponent.props.firstName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false
-                    && personComponent.props.lastName.toLowerCase().includes(this.state.searchValue.toLowerCase()) === false) {
+                let lowerCasedSearchValue = this.state.searchValue.slice(0).toLowerCase();
+                //if the name doesn't have searchValue, then show the hidden bar when the props matches the search value
+                //lowerCase for less sensibility
+                //copy the string and apply toLowerCase(), otherwise the text itself will be lowercased and shown on the interface
+                if (personComponent.props.firstName.slice(0).toLowerCase().includes(lowerCasedSearchValue) === false
+                    && personComponent.props.lastName.slice(0).toLowerCase().includes(lowerCasedSearchValue) === false) {
 
-                    if (personComponent.props.email.toLowerCase().includes(this.state.searchValue.toLowerCase())
-                        || personComponent.props.address.toLowerCase().includes(this.state.searchValue.toLowerCase())
-                        || personComponent.props.number.toLowerCase().includes(this.state.searchValue.toLowerCase())
-                        || personComponent.props.city.toLowerCase().includes(this.state.searchValue.toLowerCase())
-                        || personComponent.props.cityState.toLowerCase().includes(this.state.searchValue.toLowerCase())
-                        || personComponent.props.country.toLowerCase().includes(this.state.searchValue.toLowerCase())
+                    if (personComponent.props.email.slice(0).toLowerCase().includes(lowerCasedSearchValue)
+                        || personComponent.props.address.slice(0).toLowerCase().includes(lowerCasedSearchValue)
+                        || personComponent.props.number.slice(0).toLowerCase().includes(lowerCasedSearchValue)
+                        || personComponent.props.city.slice(0).toLowerCase().includes(lowerCasedSearchValue)
+                        || personComponent.props.cityState.slice(0).toLowerCase().includes(lowerCasedSearchValue)
+                        || personComponent.props.country.slice(0).toLowerCase().includes(lowerCasedSearchValue)
                     ) {
                         if (!this.state.searchShowPeople.has(personComponent.props.id)) {
-                            this.addSearchShowPeople(personComponent.props.id); //add it to the set
+                            //if the people set doesn't have the id, add it to the set
+                            this.addSearchShowPeople(personComponent.props.id);
                         }
                     } else {
                         if (this.state.searchShowPeople.has(personComponent.props.id)) {
@@ -273,14 +261,14 @@ class HomePage extends Component {
                         }
                     }
                 } else {
-                    console.log(personComponent.props.id, "match name already");
+                    // console.log(personComponent.props.id, "match name already");
                 }
             } else {
                 if (this.state.searchShowPeople.size > 0) this.clearSearchShowPeople();
             }
         });
 
-        //the filter echo buttons HUI XIAN
+        //the filter echo buttons - let user know what they have filtered
         const filterCountriesArray = Array.from(this.state.filterCountries).sort();
         const filterCountriesEchoBtns = filterCountriesArray.map((c, i) => {
             return (
@@ -313,7 +301,6 @@ class HomePage extends Component {
                     {filterCountriesEchoBtns}
                 </div>
                 <div className="list">
-                    {/*<div className="initial-bar">A</div>*/}
                     {peopleList}
                 </div>
 

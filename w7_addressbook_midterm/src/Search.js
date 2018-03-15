@@ -7,7 +7,6 @@ import './Search.css';
 class Search extends Component {
     constructor(props){
         super(props);
-        // this.buttonClicked = this.buttonClicked.bind(this);
         this.placeholder = "Search name, email, or country";
         this.onInputChange = this.onInputChange.bind(this);
 
@@ -16,7 +15,7 @@ class Search extends Component {
     onInputChange(e){
         // e.preventDefault;
         // console.log(e.target.value);
-        return this.props.onChange(e.target.value.toLowerCase());
+        return this.props.onChange(e.target.value.slice(0).toLowerCase());
     }
 
     render() {

@@ -20,17 +20,19 @@ class Person extends Component {
 
     handleSearchHighlight(prop) {
         let output;
-        let lowerCaseProp = prop.toLowerCase();
-        if (this.props.searchText !== "" && lowerCaseProp.includes(this.props.searchText.toLowerCase())) {
+        let lowerCaseProp = prop.slice(0).toLowerCase();
+        let lowerCasedSearchValue = this.props.searchText.slice(0).toLowerCase();
+        if (this.props.searchText !== "" && lowerCaseProp.includes(lowerCasedSearchValue)) {
             //highlight the text
-            let pos = lowerCaseProp.search(this.props.searchText.toLowerCase());
+            let pos = lowerCaseProp.search(lowerCasedSearchValue);
             let firstPart = prop.slice(0, pos);
+            let midPart = prop.slice(pos,pos+ this.props.searchText.length);
             let secondPart = "";
             if ((pos + this.props.searchText.length) !== prop.length) {
                 secondPart = prop.slice(pos + this.props.searchText.length);
             }
             output = (
-                <span>{firstPart}<span style={{color: '#00BFFF'}}>{this.props.searchText}</span>{secondPart}</span>);
+                <span>{firstPart}<span style={{color: '#00BFFF'}}>{midPart}</span>{secondPart}</span>);
         } else {
             output = (<span>{prop}</span>);
         }
@@ -61,12 +63,14 @@ class Person extends Component {
                         }
                     })()}</h2>
                 </div>
-                <svg className="divide-border" style={{display: (this.props.showBar || this.props.searchToShow) ? 'none' : 'block'}}>
-                    <line x1="72px" y1="0" x2="360px" y2="0" />
+                <svg className="divide-border"
+                     style={{display: (this.props.showBar || this.props.searchToShow) ? 'none' : 'block'}}>
+                    <line x1="72px" y1="0" x2="360px" y2="0"/>
                 </svg>
 
-                <div className={"PersonHiddenBar" + ((this.props.showBar || this.props.searchToShow) ? "":" collapsed")}
-                     //comment the display css and try do the CSS animation // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
+                <div
+                    className={"PersonHiddenBar" + ((this.props.showBar || this.props.searchToShow) ? "" : " collapsed")}
+                    //comment the display css and try do the CSS animation // style={{display: (this.props.showBar || this.props.searchToShow) ? 'block' : 'none'}}
                 >
                     <div className="action">
                         <button type="button" name="action-call" value="call" onClick={this.actionButtonClicked}><i
@@ -92,7 +96,6 @@ class Person extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
 
         );

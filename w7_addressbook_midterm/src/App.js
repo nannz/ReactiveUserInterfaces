@@ -3,7 +3,6 @@ import './App.css';
 import HomePage from './HomePage';
 import ContactPage from './ContactPage';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {Link} from 'react-router-dom';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -139,8 +138,6 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    {/*<Link to="/topics">Topics</Link>*/}
-
                     <Route exact path="/" render={(props) => {
                         console.log(props);
                         console.log(this.state.people);

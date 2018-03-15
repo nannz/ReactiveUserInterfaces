@@ -5,15 +5,12 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import Divider from 'material-ui/Divider';
 const styles = {
     block: {
-        // maxWidth: 250,
     },
     checkbox: {
         paddingBottom:16,
-        //marginBottom: 16,
     },
     radioButton: {
         paddingBottom:16,
-        //marginBottom: 16,
     },
 };
 
@@ -69,16 +66,7 @@ class Filter extends Component {
         this.props.onChangeCheckbox(updatedCountryCheckboxes);
     }
 
-// <label className="checkbox-custom-label">
-// {c}
-// <input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}
-// className="checkbox-custom"
-// type="checkbox"
-// value={c}
-// checked={this.props.filterCountries.has(c)}
-// onChange={this.handleCheckboxChange}
-// />
-// </label>
+
 
     render() {
         const checkboxCountries = this.props.uniqueCountries.map((c, i) => {
@@ -91,6 +79,17 @@ class Filter extends Component {
                           style={styles.checkbox}/>
             )
         });
+        {/*The original working code for check box, I used the Material-UI component later for exploring better visual effects*/}
+        {/*<label className="checkbox-custom-label">*/}
+        {/*{c}*/}
+        {/*<input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}*/}
+        {/*className="checkbox-custom"*/}
+        {/*type="checkbox"*/}
+        {/*value={c}*/}
+        {/*checked={this.props.filterCountries.has(c)}*/}
+        {/*onChange={this.handleCheckboxChange}*/}
+        {/*/>*/}
+        {/*</label>*/}
 
         return (
             <div className={"Filter" + (this.props.showFilter ? "" : " hidden")}
@@ -112,6 +111,7 @@ class Filter extends Component {
                             <i className="material-icons">expand_more</i>
                         </button>
                     </div>
+
                     <RadioButtonGroup className="sortTypes" name="sortType" labelPosition="left"
                                       defaultSelected={this.props.currentSortType}
                                       onChange={this.handleSortChange}
@@ -136,7 +136,8 @@ class Filter extends Component {
                         />
                     </RadioButtonGroup>
                     <Divider />
-                    <div className="sortBy">{/*old code*/}
+                    {/*old but working code for radio button group below. */}
+                    <div className="sortBy">
                         {/*<div>*/}
                         {/*<label>*/}
                         {/*<input type="radio" classID="sortFirstName"*/}
@@ -164,9 +165,8 @@ class Filter extends Component {
                         {/*</label>*/}
                         {/*</div>*/}
                     </div>
-                    {/*old code for filterBy*/}
+
                     <div className="filterBy">
-                        {/*<h2>Filter By :</h2>*/}
                         <div className="expansionBar">
                             <div className="bar-left">
                                 <h2>Country</h2>
