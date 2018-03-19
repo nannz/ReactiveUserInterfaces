@@ -83,7 +83,6 @@ class Shape extends Component {
     }
 
     checkChangeShape(){
-
         if(this.props.shapeText != this.lastShapeText){
             console.log("change shape!");
             console.log("this.lastShapeText is " + this.lastShapeText );
