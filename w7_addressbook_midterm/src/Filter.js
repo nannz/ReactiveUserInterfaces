@@ -79,17 +79,17 @@ class Filter extends Component {
                           style={styles.checkbox}/>
             )
         });
-        {/*The original working code for check box, I used the Material-UI component later for exploring better visual effects*/}
-        {/*<label className="checkbox-custom-label">*/}
-        {/*{c}*/}
-        {/*<input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}*/}
-        {/*className="checkbox-custom"*/}
-        {/*type="checkbox"*/}
-        {/*value={c}*/}
-        {/*checked={this.props.filterCountries.has(c)}*/}
-        {/*onChange={this.handleCheckboxChange}*/}
-        {/*/>*/}
-        {/*</label>*/}
+        {/*The original working code for check box, I used the Material-UI component later for exploring better visual effects*/
+        /*<label className="checkbox-custom-label">*/
+        /*{c}*/
+        /*<input classID={"checkBoxCountry" + this.props.uniqueCountries.indexOf(c)}*/
+        /*className="checkbox-custom"*/
+        /*type="checkbox"*/
+        /*value={c}*/
+        /*checked={this.props.filterCountries.has(c)}*/
+        /*onChange={this.handleCheckboxChange}*/
+        /*/>*/
+        /*</label>*/}
 
         return (
             <div className={"Filter" + (this.props.showFilter ? "" : " hidden")}

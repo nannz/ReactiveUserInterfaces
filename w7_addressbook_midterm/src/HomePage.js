@@ -3,6 +3,8 @@ import './HomePage.css';
 import Person from './Person'
 import Search from './Search'
 import Filter from './Filter'
+import AddContactPage from './AddContactPage'
+import {Link} from 'react-router-dom';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -18,8 +20,12 @@ class HomePage extends Component {
             sortType: "First Name",
             onClickPersonID: 0,
             filterCountries: new Set(), //a set of the countries that filtered
-            searchShowPeople: new Set()//Set(id:xx)
+            searchShowPeople: new Set(),//Set(id:xx)
+
+            showAddContact: false,
+            disableAddContact: true
         };
+
         this.onSearchChange = this.onSearchChange.bind(this);
         this.onNameClick = this.onNameClick.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -34,6 +40,15 @@ class HomePage extends Component {
         this.addSearchShowPeople = this.addSearchShowPeople.bind(this);
         this.removeSearchShowPeople = this.removeSearchShowPeople.bind(this);
         this.clearSearchShowPeople = this.clearSearchShowPeople.bind(this);
+
+        //w8 - local storage & prop types
+        this.handleAddContact = this.handleAddContact.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            disableAddContact: false
+        })
     }
 
 
@@ -122,6 +137,13 @@ class HomePage extends Component {
         }
     }
 
+    handleAddContact() {
+        console.log("the button is clicked");
+        this.setState({
+            showAddContact: true
+        })
+    }
+
     render() {
         let peopleCopy = this.props.people.slice();
 
@@ -171,7 +193,7 @@ class HomePage extends Component {
                 } else if (people.number.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //5. number
                     return people.number.slice(0).toLowerCase().match(lowerCasedSearchValue);
-                }else if (people.city.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
+                } else if (people.city.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
                     //5. city
                     return people.city.slice(0).toLowerCase().match(lowerCasedSearchValue);
                 } else if (people.cityState.slice(0).toLowerCase().match(lowerCasedSearchValue)) {
@@ -279,21 +301,23 @@ class HomePage extends Component {
 
         return (
             <div className="HomePage">
+
                 <div className="app-bar">
                     <h1>Student Address Book</h1>
                     <MuiThemeProvider>
-                    <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
-                        <i className="material-icons">tune</i>
-                    </button>
-                    <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
-                            onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
-                            onChangeCheckbox={this.handleCheckboxChange}
-                            uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}
-                            handleReset={this.handleResetFilter}
-                    />
+                        <button className="filterBtn" type="button" name="ic-filter" onClick={this.handleOpenModal}>
+                            <i className="material-icons">tune</i>
+                        </button>
+                        <Filter showFilter={this.state.showFilter} onCloseModal={this.handleCloseModal}
+                                onChangeSortType={this.handleSortTypeChange} currentSortType={this.state.sortType}
+                                onChangeCheckbox={this.handleCheckboxChange}
+                                uniqueCountries={this.uniqueCountryList} filterCountries={this.state.filterCountries}
+                                handleReset={this.handleResetFilter}
+                        />
                     </MuiThemeProvider>
                     <Search onChange={this.onSearchChange} placeholderValue={this.state.searchValue}/>
                 </div>
+
                 <div className="filter-echo">
                     {this.state.sortType !== "First Name" &&
                     <button type="button" className="filter-echo-sortType" value={this.state.sortType}
@@ -309,6 +333,14 @@ class HomePage extends Component {
                     <p>try to unclick the tags</p>
                     <p> or decrease the search input~</p>
                 </div>
+
+                <button className="addContactBtn" type="button" name="btn-add" onClick={this.handleAddContact}>
+                    <Link
+                        to={'/add-contact'}
+                        style={{textDecoration: 'none', color: "black"}}>
+                        <i className="material-icons md-light">add</i>
+                    </Link>
+                </button>
 
             </div>
 
