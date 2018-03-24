@@ -302,6 +302,14 @@ class HomePage extends Component {
         return (
             <div className="HomePage">
 
+                <div className="addContactArea" style = {{display: this.state.showFilter ? "none":"block"}}>
+                    <Link to={'/add-contact'}>
+                        <button className="addContactBtn" type="button" name="btn-add" onClick={this.handleAddContact}>
+                            <i className="material-icons md-light">add</i>
+                        </button>
+                    </Link>
+                </div>
+
                 <div className="app-bar">
                     <h1>Student Address Book</h1>
                     <MuiThemeProvider>
@@ -328,19 +336,13 @@ class HomePage extends Component {
                     {peopleList}
                 </div>
 
+
                 <div className="emptyState" style={{display: peopleCopy.length > 0 ? 'none' : 'block'}}>
                     <h2>Oh no search result</h2>
                     <p>try to unclick the tags</p>
                     <p> or decrease the search input~</p>
                 </div>
 
-                <button className="addContactBtn" type="button" name="btn-add" onClick={this.handleAddContact}>
-                    <Link
-                        to={'/add-contact'}
-                        style={{textDecoration: 'none', color: "black"}}>
-                        <i className="material-icons md-light">add</i>
-                    </Link>
-                </button>
 
             </div>
 

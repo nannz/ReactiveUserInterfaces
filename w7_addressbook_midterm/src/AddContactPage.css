@@ -7,10 +7,48 @@
     width: 100%;
     height: 100%;
     background-color: #fefefe;
+    /*background-color: deepskyblue;*/
+}
+.AddContactPage h1{
+    width:auto;
+}
+.AddContactPage .submitBtn{
+    font-size:18px;
+    color:deepskyblue;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+.AddContactPage .topBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.backBtn-and-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+}
+.form-container{
+    overflow: scroll;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.input-name{
+    display: flex;
+    align-items: baseline;
+}
 
-    animation-name: animateAppear;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in;
+.input-address{
+    display: flex;
+    flex-direction: row;
+}
+.form-container .material-icons{
+    margin:14px;
 }
 
 
