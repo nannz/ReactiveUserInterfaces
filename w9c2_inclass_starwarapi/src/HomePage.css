@@ -1,0 +1,8 @@
+.HomePage{
+    text-align: center;
+}
+
+.listOfPeople{
+    display: flex;
+    flex-direction: column;
+}
