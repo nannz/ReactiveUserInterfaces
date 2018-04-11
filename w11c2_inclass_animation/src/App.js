@@ -30,7 +30,13 @@ class App extends Component {
                         unmountOnExit
                     >
                         <div className='dropDown-content'>
-                            I am the drop down
+                            <ul>
+                                <li>I am the drop down</li>
+                                <li>I am the drop down</li>
+                                <li>I am the drop down</li>
+                                <li>I am the drop down</li>
+                                <li>I am the drop down</li>
+                            </ul>
                         </div>
                     </CSSTransition>
                 </div>
