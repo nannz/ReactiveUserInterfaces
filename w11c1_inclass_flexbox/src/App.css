@@ -1,0 +1,86 @@
+.App {
+    margin:0;
+}
+
+.wrapper-content{
+    display: flex;
+}
+
+.navigation{
+    background-color: rosybrown;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    text-align: center;
+    width:60px;
+    height:30px;
+    background-color: grey;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.menuBtn{
+    width:50px;
+    height:50px;
+    background-color: black;
+}
+
+.navigation ul{
+    display: none;
+}
+
+.wrapper-main h1{
+    text-align: center;
+    margin:0;
+}
+.sideBar{
+    display: none;
+    background-color: lightblue;
+    flex:0 0 300px;
+}
+
+.main{
+    background-color: aquamarine;
+    flex:1;
+}
+
+.wrapper-other ul{
+    display:flex;
+    justify-content: space-around;
+}
+.wrapper-other ul li{
+    background-color: #232323;
+    color: white;
+    display: block;
+}
+
+
+footer{
+    background-color: grey;
+}
+
+@media screen and (min-width: 980px) /* Desktop */ {
+    .sideBar{
+        display: block;
+    }
+    .menuBtn{
+        display:none;
+    }
+    .navigation ul{
+        display: flex;
+    }
+}
+
+/*@media screen  and (max-width: 979px) !* Tablet *! {*/
+    /*body {*/
+        /*background: blue;*/
+    /*}*/
+/*}*/
+
+/*@media screen and (max-width: 500px) !* Mobile *! {*/
+    /*body {*/
+        /*background: green;*/
+    /*}*/
+/*}*/

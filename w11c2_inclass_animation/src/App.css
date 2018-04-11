@@ -1,0 +1,46 @@
+.App {
+    text-align: center;
+}
+
+.dropDown-btn{
+    min-width: 100px;
+    padding: 20px;
+    border: none;
+    background: #232323;
+    font-size: 15pt;
+    color: white;
+}
+
+.dropDown-content{
+    /*overflow: hidden;*/
+    /*min-height:200px;*/
+    min-width: 100px;
+    height:200px;
+    font-size: 10pt;
+    color: white;
+    background: #232323;
+}
+
+.dropDown-content-enter {
+    /*opacity: 0.01;*/
+    /*transform: scale(0.9) translateY(50%);*/
+    animation-name: showDropDown;
+    animation-duration: 2s;
+}
+
+.dropDown-content-exit{
+    animation-name: showDropDown;
+    animation-direction: reverse;
+    animation-duration: 2s;
+}
+
+/*animation: App-logo-spin infinite 20s linear;*/
+
+@keyframes showDropDown {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 200px;
+    }
+}

@@ -1,0 +1,31 @@
+.Button{
+    min-width: 100px;
+    padding: 20px;
+    border: none;
+    background: #232323;
+    font-size: 15pt;
+    color: white;
+}
+
+.animating {
+    /*animation: rotate infinite 20s linear;*/
+    animation-name: changeColor;
+}
+
+
+@keyframes changeColor{
+    from{
+        background-color: aqua;
+    }
+    to{
+        background-color: aquamarine;
+    }
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
