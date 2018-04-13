@@ -1,0 +1,19 @@
+.MakingPage{
+    /*background-color: #ebebeb;*/
+    display:grid;
+    background-color: black;
+    grid-template-columns:408px auto;
+    grid-template-rows:100vh;
+    grid-template-areas:
+    "aside ThreeScene";
+    justify-items: start;
+}
+aside{
+    grid-column:1 / 2;
+    background-color: #ebebeb;
+    padding:20px;
+}
+
+.ThreeScene{
+    grid-area:ThreeScene;
+}
