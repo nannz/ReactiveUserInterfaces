@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+
+.HomePage{
+    text-align: center;
+}
+
+.listOfPeople a{
+    display: block;
+    /*flex-direction: column;*/
+}
